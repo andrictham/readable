@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux'
-import { ADD_POST } from '../actions'
+import { GET_POSTS } from '../actions'
 
-const initialPostsState = {
-	// TODO: Define shape of initial state here
-}
+const initialPostsState = {}
 
 const initialCategoriesState = {
 	// TODO: Define shape of initial state here
@@ -15,8 +13,11 @@ const initialCommentsState = {
 
 const posts = (state = initialPostsState, action) => {
 	switch (action.type) {
-		case ADD_POST:
-			return state
+		case GET_POSTS:
+			const { posts } = action
+			return {
+				...posts,
+			}
 		default:
 			return state
 	}
