@@ -15,9 +15,11 @@ const posts = (state = initialPostsState, action) => {
 	switch (action.type) {
 		case GET_POSTS:
 			const { posts } = action
-			return {
-				...posts,
-			}
+			let postsObj = {}
+			posts.map(post => {
+				postsObj[post.id] = post
+			})
+			return postsObj
 		default:
 			return state
 	}
