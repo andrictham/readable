@@ -1,18 +1,11 @@
-// import { getPosts } from '../api'
-import axios from 'axios'
+import { getPosts } from '../api'
 
 export const ADD_POST = 'ADD_POST'
 export const GET_POSTS = 'GET_POSTS'
 
-let api = axios.create({
-	baseURL: 'http://localhost:3001',
-	timeout: 1000,
-	headers: { Authorization: 'Basic amFzb25oaWNrOg==' },
-})
-
 export const getPostsRequest = () => dispatch => {
-	return api.get('/posts').then(res => {
-		dispatch(getPostsSuccess(res.data))
+	return getPosts().then(posts => {
+		dispatch(getPostsSuccess(posts))
 	})
 }
 
