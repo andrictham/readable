@@ -17,7 +17,7 @@ const posts = (state = initialPostsState, action) => {
 			const { posts } = action
 			let postsObj = {}
 			posts.map(post => {
-				postsObj[post.id] = post
+				return (postsObj[post.id] = post)
 			})
 			return postsObj
 		default:
