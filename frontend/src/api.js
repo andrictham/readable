@@ -6,6 +6,105 @@ const api = axios.create({
 	headers: { Authorization: 'Basic amFzb25oaWNrOg==' },
 })
 
+//														//
+//		C A T E G O R I E S			//
+//														//
+
+// GET /categories
+// Get all of the categories available for the app.
+export const getCategories = () => {
+	return api.get('/categories').then(res => res.data)
+}
+
+// GET /:category/posts
+// Get all of the posts for a particular category.
+export const getCategoryPosts = category => {
+	return api.get(`/${category}/posts`).then(res => res.data)
+}
+
+//									//
+//		P O S T S			//
+//									//
+
+// GET /posts
+// Get all of the posts. Useful for the main page when no category is selected.
 export const getPosts = () => {
 	return api.get('/posts').then(res => res.data)
 }
+
+// POST /posts
+// Add a new post.
+export const submitPost = ({
+	id,
+	timestamp,
+	title,
+	body,
+	author,
+	category,
+}) => {
+	return api
+		.post('/posts', {
+			id,
+			timestamp,
+			title,
+			body,
+			author,
+			category,
+			voteScore: 0,
+			deleted: false,
+			commentCount: 0,
+		})
+		.then(res => res.data)
+}
+
+// GET /posts/:id
+// Get the details of a single post.
+export const getPost = id => {
+	return api.get(`/posts/${id}`).then(res => res.data)
+}
+
+// POST /posts/:id
+// Used for voting on a post.
+export const votePost = (id, vote) => {
+	return api
+		.post(`/posts/${id}`, {
+			id,
+			option: vote,
+		})
+		.then(res => res.data)
+}
+
+// PUT /posts/:id
+// Edit the details of an existing post.
+
+// DELETE /posts/:id
+// Sets the deleted flag for a post to 'true'.
+// Sets the parentDeleted flag for all child comments to 'true'.
+
+// GET /posts/:id/comments
+// Get all the comments for a single post.
+export const getPostComments = id => {
+	return api.get(`/posts/${id}/comments`).then(res => res.data)
+}
+
+//												//
+//		C O M M E N T S			//
+//												//
+
+// POST /comments
+// Add a comment to a post.
+
+// GET /comments/:id
+// Get the details for a single comment.
+export const getComment = id => {
+	return api.get(`/comments/${id}`).then(res => res.data)
+}
+
+// POST /comments/:id
+// Used for voting on a comment.
+
+// PUT /comments/:id
+// Edit the details of an existing comment.
+
+// DELETE /comments/:id
+// Sets a comment's deleted flag to true.
