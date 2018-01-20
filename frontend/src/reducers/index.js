@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { GET_POSTS } from '../actions'
+import { GET_POSTS, ADD_POST } from '../actions'
 
 const initialPostsState = {}
 
@@ -20,6 +20,12 @@ const posts = (state = initialPostsState, action) => {
 				return (postsObj[post.id] = post)
 			})
 			return postsObj
+		case ADD_POST:
+			const { post } = action
+			return {
+				...state,
+				[post.id]: post,
+			}
 		default:
 			return state
 	}

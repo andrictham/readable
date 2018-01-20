@@ -34,14 +34,7 @@ export const getPosts = () => {
 
 // POST /posts
 // Add a new post.
-export const submitPost = ({
-	id,
-	timestamp,
-	title,
-	body,
-	author,
-	category,
-}) => {
+export const addPost = ({ id, timestamp, title, body, author, category }) => {
 	return api
 		.post('/posts', {
 			id,
