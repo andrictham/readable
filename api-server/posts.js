@@ -3,28 +3,30 @@ const clone = require('clone')
 let db = {}
 
 const defaultData = {
-  "8xf0y6ziyjabvozdd253nd": {
-    id: '8xf0y6ziyjabvozdd253nd',
-    timestamp: 1467166872634,
-    title: 'Udacity is the best place to learn React',
-    body: 'Everyone says so after all.',
-    author: 'thingtwo',
-    category: 'react',
-    voteScore: 6,
-    deleted: false,
-    commentCount: 2
-  },
-  "6ni6ok3ym7mf1p33lnez": {
-    id: '6ni6ok3ym7mf1p33lnez',
-    timestamp: 1468479767190,
-    title: 'Learn Redux in 10 minutes!',
-    body: 'Just kidding. It takes more than 10 minutes to learn technology.',
-    author: 'thingone',
-    category: 'redux',
-    voteScore: -5,
-    deleted: false,
-    commentCount: 0
-  }
+	'8xf0y6ziyjabvozdd253nd': {
+		id: '8xf0y6ziyjabvozdd253nd',
+		timestamp: 1467166872634,
+		title: 'Why I’m bullish on BAT and the Brave Browser in 2018',
+		body:
+			'The Basic Attention Token ($BAT) is the first coin I’ve found that I truly believe provides value, and this article explains why I’m bullish on BAT in 2018.',
+		author: 'UA6RBP',
+		category: 'altcoins',
+		voteScore: 6,
+		deleted: false,
+		commentCount: 2,
+	},
+	'6ni6ok3ym7mf1p33lnez': {
+		id: '6ni6ok3ym7mf1p33lnez',
+		timestamp: 1468479767190,
+		title: 'Adding to portfolio, what are your top picks?',
+		body:
+			'I’m already invested in crypto as it is but I seem to have acquired a small fortune of $4000 recently and I have decided to add it to my portfolio. I basically want to gain some insight on coins I don’t have and coins that people think have potential, with good reasoning that is. as of right now I own raiblocks, vechain, stellar, ripple, iota, req, quantstamp, agrello, dragon, and cardano. here are some of my contenders to split the cash amongst: more vechain, ark, kyber, and icon. what are your picks?',
+		author: 'callmerudolph',
+		category: 'cryptomarkets',
+		voteScore: -5,
+		deleted: false,
+		commentCount: 0,
+	},
 }
 
 function getData (token) {
