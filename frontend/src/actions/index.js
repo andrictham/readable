@@ -1,15 +1,35 @@
-import { getPosts, addPost } from '../api'
+import { getPosts, addPost, getCategories } from '../api'
 
 export const ADD_POST = 'ADD_POST'
 export const GET_POSTS = 'GET_POSTS'
+export const GET_CATEGORIES = 'GET_CATEGORIES'
 
-//														//
-//		C A T E G O R I E S			//
-//														//
+// ===	===	===	===	=== === === ===
+//			C A T E G O R I E S
+// ===	===	===	===	=== === === ===
 
-//									//
-//		P O S T S			//
-//									//
+// Get all categories
+
+export const getCategoriesRequest = () => dispatch => {
+	return getCategories()
+		.then(res => {
+			dispatch(getCategoriesSuccess(res.categories))
+		})
+		.catch(error => {
+			throw error
+		})
+}
+
+const getCategoriesSuccess = categories => ({
+	type: GET_CATEGORIES,
+	categories,
+})
+
+// ===	===	===	===
+//		P O S T S
+// ===	===	===	===
+
+// Get all posts
 
 export const getPostsRequest = () => dispatch => {
 	return getPosts()
@@ -26,6 +46,8 @@ const getPostsSuccess = posts => ({
 	posts,
 })
 
+// Add new post
+
 export const addPostRequest = post => dispatch => {
 	return addPost(post)
 		.then(post => {
@@ -41,6 +63,6 @@ const addPostSuccess = post => ({
 	post,
 })
 
-//												//
-//		C O M M E N T S			//
-//												//
+// ===	===	===	===	===	===
+//		 C O M M E N T S
+// ===	===	===	===	===	===

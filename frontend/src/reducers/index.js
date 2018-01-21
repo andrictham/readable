@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { GET_POSTS, ADD_POST } from '../actions'
+import { GET_POSTS, ADD_POST, GET_CATEGORIES } from '../actions'
 
 const initialPostsState = {}
 
@@ -33,6 +33,13 @@ const posts = (state = initialPostsState, action) => {
 
 const categories = (state = initialCategoriesState, action) => {
 	switch (action.type) {
+		case GET_CATEGORIES:
+			const { categories } = action
+			let categoriesObj = {}
+			categories.map(category => {
+				return (categoriesObj[category.name] = category)
+			})
+			return categoriesObj
 		default:
 			return state
 	}
