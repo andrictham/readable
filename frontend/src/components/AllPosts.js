@@ -3,22 +3,26 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPostsRequest } from '../actions'
 import NavBar from './NavBar'
+import Post from './Post'
 
 class AllPosts extends Component {
 	componentDidMount() {
 		this.props.getPostsRequest()
 	}
 	render() {
+		const { posts } = this.props
 		return (
 			<div className="App">
 				<NavBar />
-				{this.props.posts.map(post => (
-					<div key={post.id}>
-						<h3>{post.title}</h3>
-						<p className="App-intro">{post.body}</p>
-						<h4>{post.author}</h4>
-						<br />
-					</div>
+				{posts.map(post => (
+					<Post
+						id={post.id}
+						title={post.title}
+						body={post.body}
+						author={post.author}
+						timestamp={post.timestamp}
+						voteScore={post.voteScore}
+					/>
 				))}
 			</div>
 		)
