@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPostsRequest, getCategoriesRequest } from '../actions'
@@ -21,19 +21,25 @@ class AllPosts extends Component {
 
 		return (
 			<div className="App">
-				<ul>
+				<ul id="category-selector">
 					<li key="All Posts">
-						<Link to="/">All Posts</Link>
+						<NavLink to="/" exact activeClassName="selected">
+							All Posts
+						</NavLink>
 					</li>
 					{categories.map(category => (
 						<li key={category.name}>
-							<Link to={`/${category.path}`}>{category.name}</Link>
+							<NavLink
+								to={`/${category.path}`}
+								exact
+								activeClassName="selected"
+							>
+								{category.name}
+							</NavLink>
 						</li>
 					))}
 				</ul>
 				<hr />
-				<br />
-				<h2>{match.params.category || 'All Posts'}</h2>
 				{filteredPosts.map(post => (
 					<Post
 						key={post.id}

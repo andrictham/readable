@@ -19,6 +19,7 @@ class NavBar extends Component {
 					</Link>
 				</h1>
 				<button
+					className="add-post-button"
 					onClick={() => {
 						this.props.addPostRequest({
 							id: Math.random(), // TODO: UDID
