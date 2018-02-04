@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPostsRequest, getCategoriesRequest } from '../actions'
@@ -10,15 +11,30 @@ class AllPosts extends Component {
 		this.props.getCategoriesRequest()
 	}
 	render() {
-		const { posts, categories } = this.props
+		const { posts, categories, match } = this.props
+
+		// Filter posts by categoy, by looking at the route params
+		// If nothing is passed in, assume we’re looking at all posts
+		const filteredPosts = match.params.category
+			? posts.filter(post => match.params.category === post.category)
+			: posts
+
 		return (
 			<div className="App">
-				<h2>Categories</h2>
-				<ul>{categories.map(category => <li>{category.name}</li>)}</ul>
+				<ul>
+					<li key="All Posts">
+						<Link to="/">All Posts</Link>
+					</li>
+					{categories.map(category => (
+						<li key={category.name}>
+							<Link to={`/${category.path}`}>{category.name}</Link>
+						</li>
+					))}
+				</ul>
 				<hr />
 				<br />
-				<h2>Posts</h2>
-				{posts.map(post => (
+				<h2>{match.params.category || 'All Posts'}</h2>
+				{filteredPosts.map(post => (
 					<Post
 						key={post.id}
 						id={post.id}

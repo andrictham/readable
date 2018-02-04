@@ -9,7 +9,7 @@ class App extends Component {
 		return (
 			<div>
 				<NavBar />
-				<Route exact path="/" render={() => <AllPosts />} />
+				<Route exact path="/:category?" component={AllPosts} />
 			</div>
 		)
 	}
