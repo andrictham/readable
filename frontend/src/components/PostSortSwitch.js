@@ -10,13 +10,13 @@ const PostSortSwitch = ({ sortedBy, onSwitch }) => (
 				children="Latest"
 				bg={sortedBy === 'latest' ? MAIN : 'transparent'}
 				color={sortedBy === 'latest' ? BG_TOP : MAIN}
-				onClick={() => onSwitch(sortedBy)}
+				onClick={() => onSwitch('latest')}
 			/>
 			<SortSwitch
 				children="Popular"
 				bg={sortedBy === 'popular' ? MAIN : 'transparent'}
 				color={sortedBy === 'popular' ? BG_TOP : MAIN}
-				onClick={() => onSwitch(sortedBy)}
+				onClick={() => onSwitch('popular')}
 			/>
 		</Group>
 	</Box>

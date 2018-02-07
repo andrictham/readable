@@ -18,17 +18,14 @@ class AllPosts extends Component {
 		this.props.getCategoriesRequest()
 	}
 
-	switchSortMethod = currentSortMethod => {
-		switch (currentSortMethod) {
-			case 'latest':
-				this.setState({ sortedBy: 'popular' })
-				break
-			case 'popular':
-				this.setState({ sortedBy: 'latest' })
-				break
-			default:
-				this.setState({ sortedBy: 'latest' })
-				break
+	switchSortMethod = selectedSwitch => {
+		if (this.state.sortedBy === 'latest' && selectedSwitch !== 'latest') {
+			this.setState({ sortedBy: 'popular' })
+		} else if (
+			this.state.sortedBy === 'popular' &&
+			selectedSwitch !== 'popular'
+		) {
+			this.setState({ sortedBy: 'latest' })
 		}
 	}
 
