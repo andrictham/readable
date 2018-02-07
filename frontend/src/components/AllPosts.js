@@ -4,6 +4,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPostsRequest, getCategoriesRequest } from '../actions'
 import Post from './Post'
+import styled from 'styled-components'
+import { Group, Button, Flex, Box } from 'rebass'
+import { TANGERINE, WHITE, SMOKE } from '../utils/colors'
 
 class AllPosts extends Component {
 	componentDidMount() {
@@ -20,42 +23,81 @@ class AllPosts extends Component {
 			: posts
 
 		return (
-			<div className="App">
-				<ul id="category-selector">
-					<li key="All Posts">
-						<NavLink to="/" exact activeClassName="selected">
-							All Posts
-						</NavLink>
-					</li>
-					{categories.map(category => (
-						<li key={category.name}>
-							<NavLink
-								to={`/${category.path}`}
-								exact
-								activeClassName="selected"
-							>
-								{category.name}
-							</NavLink>
-						</li>
-					))}
-				</ul>
+			<PostView align="center" direction="column">
+				<PostNavControls>
+					<Box bg={WHITE} w={1} px={3}>
+						<CategorySelector>
+							<li key="all">
+								<NavLink to="/" exact activeClassName="selected">
+									all
+								</NavLink>
+							</li>
+							{categories.map(category => (
+								<li key={category.name}>
+									<NavLink
+										to={`/${category.path}`}
+										exact
+										activeClassName="selected"
+									>
+										{category.name}
+									</NavLink>
+								</li>
+							))}
+						</CategorySelector>
+					</Box>
+				</PostNavControls>
+
 				<hr />
-				{filteredPosts.map(post => (
-					<Post
-						key={post.id}
-						id={post.id}
-						title={post.title}
-						body={post.body}
-						author={post.author}
-						category={post.category}
-						timestamp={post.timestamp}
-						voteScore={post.voteScore}
-					/>
-				))}
-			</div>
+				<Box>
+					<Posts>
+						{filteredPosts.map(post => (
+							<Post
+								key={post.id}
+								id={post.id}
+								title={post.title}
+								body={post.body}
+								author={post.author}
+								category={post.category}
+								timestamp={post.timestamp}
+								voteScore={post.voteScore}
+							/>
+						))}
+					</Posts>
+				</Box>
+			</PostView>
 		)
 	}
 }
+
+const PostView = styled(Flex)``
+
+const PostNavControls = styled.div`
+	text-align: center;
+	width: 100%;
+`
+
+const CategorySelector = styled.ul`
+	list-style: none;
+	display: inline-block;
+	& li {
+		margin: 1rem;
+		float: left;
+	}
+	& a {
+		text-decoration: none;
+		color: ${TANGERINE};
+	}
+	& .selected {
+		background-color: ${TANGERINE};
+		color: ${WHITE};
+		padding: 0.5rem;
+		border-radius: 3px;
+	}
+`
+
+const Posts = styled.div`
+	margin: 1rem;
+`
 
 const mapDispatchToProps = dispatch => {
 	return bindActionCreators({ getPostsRequest, getCategoriesRequest }, dispatch)

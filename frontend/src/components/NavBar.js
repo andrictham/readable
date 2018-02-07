@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addPostRequest } from '../actions'
+import styled from 'styled-components'
+import { YELLOW, ORANGE, RED } from '../utils/colors'
 
 class NavBar extends Component {
 	render() {
 		return (
-			<header className="App-header">
-				<h1 className="App-title">
+			<Header>
+				<AppTitle>
 					<Link
 						to="/"
 						style={{
@@ -17,9 +19,8 @@ class NavBar extends Component {
 					>
 						Readable
 					</Link>
-				</h1>
-				<button
-					className="add-post-button"
+				</AppTitle>
+				<AddPostButton
 					onClick={() => {
 						this.props.addPostRequest({
 							id: Math.random(), // TODO: UDID
@@ -37,11 +38,42 @@ class NavBar extends Component {
 					}}
 				>
 					Add Post
-				</button>
-			</header>
+				</AddPostButton>
+			</Header>
 		)
 	}
 }
+
+const Header = styled.header`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-image: linear-gradient(
+		227deg,
+		${YELLOW} 0%,
+		${ORANGE} 55%,
+		${RED} 100%
+	);
+	padding: 1rem 1rem 1.1rem;
+	color: white;
+`
+
+const AddPostButton = styled.button`
+	font-size: 0.8rem;
+	font-weight: 600;
+	border-radius: 2rem;
+	padding: 1rem 2rem;
+	border: 0;
+	box-shadow: none;
+	cursor: pointer;
+`
+
+const AppTitle = styled.h1`
+	font-size: 1.5em;
+	& a {
+		text-decoration: none;
+	}
+`
 
 const mapDispatchToProps = dispatch => {
 	return bindActionCreators({ addPostRequest }, dispatch)
