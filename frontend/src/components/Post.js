@@ -1,8 +1,8 @@
 import React from 'react'
 import moment from 'moment'
-import { Flex, Box, Card, Badge, Subhead, Divider } from 'rebass'
+import { Flex, Box, Card, Badge, Subhead } from 'rebass'
 import styled from 'styled-components'
-import { MAIN, FADED, BG_BOTTOM } from '../utils/colors'
+import { MAIN, FADED } from '../utils/colors'
 import { FaArrowUp, FaArrowDown } from 'react-icons/lib/fa'
 
 const Post = ({ id, title, body, author, category, timestamp, voteScore }) => (
