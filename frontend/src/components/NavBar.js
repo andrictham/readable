@@ -20,7 +20,7 @@ const NavBar = props => (
 		</AppTitle>
 		<AddPostButton
 			onClick={() => {
-				this.props.addPostRequest({
+				props.addPostRequest({
 					id: Math.random(), // TODO: UDID
 					timestamp: Date.now(),
 					title:
