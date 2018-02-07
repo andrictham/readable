@@ -9,6 +9,10 @@ import { Group, Button, Flex, Box } from 'rebass'
 import { MAIN, BG_TOP, BG_BOTTOM } from '../utils/colors'
 
 class AllPosts extends Component {
+	state = {
+		sortBy: 'latest',
+	}
+
 	componentDidMount() {
 		this.props.getPostsRequest()
 		this.props.getCategoriesRequest()
@@ -21,6 +25,16 @@ class AllPosts extends Component {
 		const filteredPosts = match.params.category
 			? posts.filter(post => match.params.category === post.category)
 			: posts
+
+		const compare = (a, b) => {
+			if (this.state.sortBy === 'latest') {
+				return a.timestamp < b.timestamp
+			} else if (this.state.sortBy === 'popular') {
+				return a.voteScore < b.voteScore
+			}
+		}
+
+		const sortedPosts = [].concat(filteredPosts.sort(compare))
 
 		return (
 			<PostView align="center" direction="column">
@@ -45,12 +59,28 @@ class AllPosts extends Component {
 							))}
 						</CategorySelector>
 					</Box>
+
+					<Box bg={BG_TOP} w={1} px={3} pb={3}>
+						<Group>
+							<SortSwitch
+								children="Latest"
+								bg={this.state.sortBy === 'latest' ? MAIN : 'transparent'}
+								color={this.state.sortBy === 'latest' ? BG_TOP : MAIN}
+								onClick={() => this.setState({ sortBy: 'latest' })}
+							/>
+							<SortSwitch
+								children="Popular"
+								bg={this.state.sortBy === 'popular' ? MAIN : 'transparent'}
+								color={this.state.sortBy === 'popular' ? BG_TOP : MAIN}
+								onClick={() => this.setState({ sortBy: 'popular' })}
+							/>
+						</Group>
+					</Box>
 				</PostNavControls>
 
-				<hr />
 				<Box>
 					<Posts>
-						{filteredPosts.map(post => (
+						{sortedPosts.map(post => (
 							<Post
 								key={post.id}
 								id={post.id}
@@ -93,6 +123,15 @@ const CategorySelector = styled.ul`
 		padding: 0.5rem;
 		border-radius: 3px;
 	}
+`
+
+const SortSwitch = styled(Button)`
+	border: 1px solid ${MAIN};
+	cursor: pointer;
+	&:focus {
+		border-color: ${BG_BOTTOM};
+	}
+	transition: 125ms ease-in-out all;
 `
 
 const Posts = styled.div`
