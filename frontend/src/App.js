@@ -1,14 +1,18 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import AllPosts from './components/AllPosts'
+import EditPost from './components/EditPost'
 import styled, { injectGlobal } from 'styled-components'
 import { BG_BOTTOM } from './utils/colors'
 
 const App = props => (
 	<Main>
 		<NavBar />
-		<Route exact path="/:category?" component={AllPosts} />
+		<Switch>
+			<Route exact path="/edit-post/" component={EditPost} />
+			<Route exact path="/:category?" component={AllPosts} />
+		</Switch>
 	</Main>
 )
 
