@@ -28,6 +28,8 @@ injectGlobal`
 	}
 `
 
-const Main = styled.div``
+const Main = styled.div`
+	padding-bottom: 2rem;
+`
 
 export default App

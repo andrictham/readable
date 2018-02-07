@@ -11,7 +11,7 @@ const Post = ({ id, title, body, author, category, timestamp, voteScore }) => (
 		</p>
 		<Subhead>
 			{title}
-			<Badge bg={MAIN} ml={2}>
+			<Badge bg={MAIN} ml={2} px={2}>
 				{category}
 			</Badge>
 		</Subhead>
@@ -21,6 +21,8 @@ const Post = ({ id, title, body, author, category, timestamp, voteScore }) => (
 	</PostCard>
 )
 
-const PostCard = styled(Card)``
+const PostCard = styled(Card)`
+	box-shadow: none;
+`
 
 export default Post
