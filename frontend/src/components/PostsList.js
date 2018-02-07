@@ -24,6 +24,9 @@ const PostsList = ({ posts }) => (
 
 const Posts = styled.div`
 	margin: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 `
 
 export default PostsList
