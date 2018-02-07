@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addPostRequest } from '../actions'
 import styled from 'styled-components'
-import { YELLOW, ORANGE, RED } from '../utils/colors'
+import { GRADIENT_1, GRADIENT_2, GRADIENT_3, BG_TOP } from '../utils/colors'
 
 class NavBar extends Component {
 	render() {
@@ -14,7 +14,7 @@ class NavBar extends Component {
 					<Link
 						to="/"
 						style={{
-							color: '#fff',
+							color: BG_TOP,
 						}}
 					>
 						Readable
@@ -50,9 +50,9 @@ const Header = styled.header`
 	align-items: center;
 	background-image: linear-gradient(
 		227deg,
-		${YELLOW} 0%,
-		${ORANGE} 55%,
-		${RED} 100%
+		${GRADIENT_1} 0%,
+		${GRADIENT_2} 55%,
+		${GRADIENT_3} 100%
 	);
 	padding: 1rem 1rem 1.1rem;
 	color: white;

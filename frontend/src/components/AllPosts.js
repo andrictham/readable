@@ -6,7 +6,7 @@ import { getPostsRequest, getCategoriesRequest } from '../actions'
 import Post from './Post'
 import styled from 'styled-components'
 import { Group, Button, Flex, Box } from 'rebass'
-import { TANGERINE, WHITE, SMOKE } from '../utils/colors'
+import { MAIN, BG_TOP, BG_BOTTOM } from '../utils/colors'
 
 class AllPosts extends Component {
 	componentDidMount() {
@@ -25,7 +25,7 @@ class AllPosts extends Component {
 		return (
 			<PostView align="center" direction="column">
 				<PostNavControls>
-					<Box bg={WHITE} w={1} px={3}>
+					<Box bg={BG_TOP} w={1} px={3}>
 						<CategorySelector>
 							<li key="all">
 								<NavLink to="/" exact activeClassName="selected">
@@ -85,11 +85,11 @@ const CategorySelector = styled.ul`
 	}
 	& a {
 		text-decoration: none;
-		color: ${TANGERINE};
+		color: ${MAIN};
 	}
 	& .selected {
-		background-color: ${TANGERINE};
-		color: ${WHITE};
+		background-color: ${MAIN};
+		color: ${BG_TOP};
 		padding: 0.5rem;
 		border-radius: 3px;
 	}

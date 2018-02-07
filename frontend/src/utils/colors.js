@@ -1,6 +1,15 @@
-export const RED = '#E20000'
-export const ORANGE = '#FF6F17'
-export const TANGERINE = '#FE7D21'
-export const YELLOW = '#FAD961'
-export const SMOKE = '#F6F6F6'
-export const WHITE = '#FFFFFF'
+// Options
+const RED = '#E20000'
+const ORANGE = '#FF6F17'
+const TANGERINE = '#FE7D21'
+const YELLOW = '#FAD961'
+const SMOKE = '#F6F6F6'
+const WHITE = '#FFFFFF'
+
+// Decisions
+export const MAIN = TANGERINE
+export const BG_TOP = WHITE
+export const BG_BOTTOM = SMOKE
+export const GRADIENT_1 = YELLOW
+export const GRADIENT_2 = ORANGE
+export const GRADIENT_3 = RED

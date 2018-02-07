@@ -1,16 +1,26 @@
 import React from 'react'
 import moment from 'moment'
+import { Card, Badge, Subhead } from 'rebass'
+import styled from 'styled-components'
+import { MAIN } from '../utils/colors'
 
 const Post = ({ id, title, body, author, category, timestamp, voteScore }) => (
-	<div>
-		<h4>{author}</h4>
-		<h5>{category}</h5>
-		<p>{moment(timestamp).fromNow()}</p>
-		<h3>{title}</h3>
-		<p className="App-intro">{body}</p>
+	<PostCard p={3} m={3}>
+		<p>
+			<strong>{author}</strong> &nbsp; {moment(timestamp).fromNow()}
+		</p>
+		<Subhead>
+			{title}
+			<Badge bg={MAIN} ml={2}>
+				{category}
+			</Badge>
+		</Subhead>
+
+		<p>{body}</p>
 		<p>Votes: {voteScore}</p>
-		<hr />
-	</div>
+	</PostCard>
 )
+
+const PostCard = styled(Card)``
 
 export default Post
