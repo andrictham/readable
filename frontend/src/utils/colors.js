@@ -1,0 +1,6 @@
+export const RED = '#E20000'
+export const ORANGE = '#FF6F17'
+export const TANGERINE = '#FE7D21'
+export const YELLOW = '#FAD961'
+export const SMOKE = '#F6F6F6'
+export const WHITE = '#FFFFFF'

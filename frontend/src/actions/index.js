@@ -1,4 +1,4 @@
-import { getPosts, addPost, getCategories } from '../api'
+import { getPosts, addPost, getCategories } from '../utils/api'
 
 export const ADD_POST = 'ADD_POST'
 export const GET_POSTS = 'GET_POSTS'
