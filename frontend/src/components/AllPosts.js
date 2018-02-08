@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPostsRequest, getCategoriesRequest } from '../actions'
 import PostCategoryFilter from './PostCategoryFilter'
-import PostSortSwitch from './PostSortSwitch'
+import PostSortToggle from './PostSortToggle'
 import PostsList from './PostsList'
 import { Flex } from 'rebass'
 
@@ -18,13 +18,10 @@ class AllPosts extends Component {
 		this.props.getCategoriesRequest()
 	}
 
-	switchSortMethod = selectedSwitch => {
-		if (this.state.sortedBy === 'latest' && selectedSwitch !== 'latest') {
+	toggleSortMethod = toggledTo => {
+		if (this.state.sortedBy === 'latest' && toggledTo !== 'latest') {
 			this.setState({ sortedBy: 'popular' })
-		} else if (
-			this.state.sortedBy === 'popular' &&
-			selectedSwitch !== 'popular'
-		) {
+		} else if (this.state.sortedBy === 'popular' && toggledTo !== 'popular') {
 			this.setState({ sortedBy: 'latest' })
 		}
 	}
@@ -52,9 +49,9 @@ class AllPosts extends Component {
 			<Flex align="center" direction="column">
 				<PostsViewControls>
 					<PostCategoryFilter categories={categories} />
-					<PostSortSwitch
+					<PostSortToggle
 						sortedBy={this.state.sortedBy}
-						onSwitch={this.switchSortMethod}
+						onToggle={this.toggleSortMethod}
 					/>
 				</PostsViewControls>
 				<PostsList posts={sortedPosts} />
