@@ -10,7 +10,7 @@ const App = props => (
 	<Main>
 		<NavBar />
 		<Switch>
-			<Route exact path="/edit-post/" component={EditPost} />
+			<Route exact path="/edit-post/:id?" component={EditPost} />
 			<Route exact path="/:category?" component={AllPosts} />
 		</Switch>
 	</Main>
