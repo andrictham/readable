@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
-import { GET_POSTS, ADD_POST, GET_CATEGORIES } from '../actions'
+import { reducer as formReducer } from 'redux-form'
+import { GET_POSTS, GET_POST, ADD_POST, GET_CATEGORIES } from '../actions'
 
 const posts = (state = {}, action) => {
 	switch (action.type) {
@@ -16,6 +17,27 @@ const posts = (state = {}, action) => {
 				...state,
 				[post.id]: post,
 			}
+		default:
+			return state
+	}
+}
+
+const initialPostState = {
+	id: '',
+	timestamp: '',
+	title: '',
+	body: '',
+	author: '',
+	category: '',
+	voteScore: 0,
+	deleted: false,
+	commentCount: 0,
+}
+
+const post = (state = initialPostState, action) => {
+	switch (action.type) {
+		case GET_POST:
+			return action.post
 		default:
 			return state
 	}
@@ -44,6 +66,8 @@ const comments = (state = {}, action) => {
 
 export default combineReducers({
 	posts,
+	currentPost: post,
 	categories,
 	comments,
+	form: formReducer,
 })
