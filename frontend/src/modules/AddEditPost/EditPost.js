@@ -6,6 +6,7 @@ import { reduxForm } from 'redux-form'
 import { Flex, Box, Heading } from 'rebass'
 import { BG_TOP } from '../../utils/colors'
 import EditPostForm from './components/EditPostForm'
+import BackButton from './components/BackButton'
 
 class EditPost extends Component {
 	state = {
@@ -35,7 +36,12 @@ class EditPost extends Component {
 			<Flex>
 				<Box w={1} p={3} bg={BG_TOP}>
 					<Heading my={3} pb={3}>
-						Edit Post
+						<Flex align="center">
+							<Box mb={1} mr={2}>
+								<BackButton to={`/post/${this.props.match.params.id}`} />
+							</Box>
+							<Box>Edit Post</Box>
+						</Flex>
 					</Heading>
 					<EditPostForm
 						isEditing={true}

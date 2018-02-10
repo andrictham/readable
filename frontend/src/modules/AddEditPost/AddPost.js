@@ -6,6 +6,7 @@ import { reduxForm } from 'redux-form'
 import { Flex, Box, Heading } from 'rebass'
 import { BG_TOP } from '../../utils/colors'
 import EditPostForm from './components/EditPostForm'
+import BackButton from './components/BackButton'
 
 class AddPost extends Component {
 	submitForm = formValues => {
@@ -25,7 +26,12 @@ class AddPost extends Component {
 			<Flex>
 				<Box w={1} p={3} bg={BG_TOP}>
 					<Heading my={3} pb={3}>
-						Add a post
+						<Flex align="center">
+							<Box mb={1} mr={2}>
+								<BackButton to="/" />
+							</Box>
+							<Box>Add a Post</Box>
+						</Flex>
 					</Heading>
 					<EditPostForm
 						onSubmit={this.submitForm}
