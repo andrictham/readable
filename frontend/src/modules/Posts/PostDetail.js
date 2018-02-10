@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPostRequest } from '../../actions'
@@ -42,6 +43,7 @@ class PostDetail extends Component {
 						voteScore={currentPost.voteScore}
 						commentCount={currentPost.commentCount}
 					/>
+					<Link to={`/edit/${currentPost.id}`}>Edit</Link>
 				</Box>
 			</Flex>
 		)
