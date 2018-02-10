@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { Box } from 'rebass'
-import { BG_TOP, MAIN } from '../utils/colors'
-import { TRANSITION_SNAPPY } from '../utils/transitions'
+import { BG_TOP, MAIN } from '../../../utils/colors'
+import { TRANSITION_SNAPPY } from '../../../utils/transitions'
 
 const PostCategoryFilter = ({ categories }) => (
 	<Box bg={BG_TOP} w={1} px={3}>

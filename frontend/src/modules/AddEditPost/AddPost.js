@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addPostRequest } from '../actions'
+import { addPostRequest } from '../../actions'
 import { reduxForm } from 'redux-form'
 import { Flex, Box, Heading } from 'rebass'
-import { BG_TOP } from '../utils/colors'
-import EditPostForm from './EditPostForm'
+import { BG_TOP } from '../../utils/colors'
+import EditPostForm from './components/EditPostForm'
 
 class AddPost extends Component {
 	submitForm = formValues => {
