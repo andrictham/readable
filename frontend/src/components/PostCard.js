@@ -3,7 +3,8 @@ import moment from 'moment'
 import { Flex, Box, Card, Badge, Subhead, Text } from 'rebass'
 import styled from 'styled-components'
 import Pluralize from 'react-pluralize'
-import { MAIN } from '../utils/colors'
+import { MAIN, SHADOW } from '../utils/colors'
+import { TRANSITION_SMOOTH } from '../utils/transitions'
 import VoteCounter from '../components/VoteCounter'
 
 const PostCard = ({
@@ -47,6 +48,10 @@ const PostCard = ({
 
 const PostCardContainer = styled(Card)`
 	box-shadow: none;
+	transition: ${TRANSITION_SMOOTH};
+	&:hover {
+		box-shadow: ${SHADOW};
+	}
 `
 
 const PostBody = styled.p`

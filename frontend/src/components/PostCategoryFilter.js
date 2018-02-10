@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { Box } from 'rebass'
 import { BG_TOP, MAIN } from '../utils/colors'
+import { TRANSITION_SNAPPY } from '../utils/transitions'
 
 const PostCategoryFilter = ({ categories }) => (
 	<Box bg={BG_TOP} w={1} px={3}>
@@ -33,6 +34,13 @@ const CategorySelector = styled.ul`
 	& a {
 		text-decoration: none;
 		color: ${MAIN};
+		padding: 0.5rem;
+		border-radius: 3px;
+		transition: ${TRANSITION_SNAPPY}
+		&:hover {
+			background-color: ${MAIN};
+			color: ${BG_TOP};
+		}
 	}
 	& .selected {
 		background-color: ${MAIN};

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Group, Button, Box } from 'rebass'
 import { MAIN, BG_TOP, BG_BOTTOM } from '../utils/colors'
+import { TRANSITION_SNAPPY } from '../utils/transitions'
 
 const PostSortToggle = ({ sortedBy, onToggle }) => (
 	<Box bg={BG_TOP} w={1} px={3} pb={3}>
@@ -28,7 +29,7 @@ const SortSwitch = styled(Button)`
 	&:focus {
 		border-color: ${BG_BOTTOM};
 	}
-	transition: 125ms ease-in-out all;
+	transition: ${TRANSITION_SNAPPY};
 `
 
 export default PostSortToggle
