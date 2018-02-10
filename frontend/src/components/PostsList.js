@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Box } from 'rebass'
-import Post from './Post'
+import PostCard from './PostCard'
 
 const PostsList = ({ posts }) => (
 	<Box>
 		<Posts>
 			{posts.map(post => (
-				<Post
+				<PostCard
 					key={post.id}
 					id={post.id}
 					title={post.title}

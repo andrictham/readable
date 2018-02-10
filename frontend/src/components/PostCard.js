@@ -5,8 +5,16 @@ import styled from 'styled-components'
 import { MAIN, FADED } from '../utils/colors'
 import { FaArrowUp, FaArrowDown } from 'react-icons/lib/fa'
 
-const Post = ({ id, title, body, author, category, timestamp, voteScore }) => (
-	<PostCard p={3} m={3} width={[1, 5 / 6, null, 3 / 4]}>
+const PostCard = ({
+	id,
+	title,
+	body,
+	author,
+	category,
+	timestamp,
+	voteScore,
+}) => (
+	<PostCardContainer p={3} m={3} width={[1, 5 / 6, null, 3 / 4]}>
 		<p>
 			<strong>{author}</strong> &nbsp; {moment(timestamp).fromNow()}
 		</p>
@@ -20,10 +28,10 @@ const Post = ({ id, title, body, author, category, timestamp, voteScore }) => (
 		<PostBody>{body}</PostBody>
 
 		<VoteCounter voteScore={voteScore} />
-	</PostCard>
+	</PostCardContainer>
 )
 
-const PostCard = styled(Card)`
+const PostCardContainer = styled(Card)`
 	box-shadow: none;
 `
 
@@ -62,4 +70,4 @@ const DownVoteButton = styled(FaArrowDown)`
 	color: ${FADED};
 `
 
-export default Post
+export default PostCard
