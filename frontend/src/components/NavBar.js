@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Heading } from 'rebass'
 import styled from 'styled-components'
 import {
 	GRADIENT_1,
@@ -51,8 +52,9 @@ const AddPostButton = styled(Link)`
 	background-color: ${BG_BOTTOM};
 `
 
-const AppTitle = styled.h1`
-	font-size: 1.5em;
+const AppTitle = styled(Heading)`
+	font-size: 1.7em;
+	font-weight: 600;
 	& a {
 		text-decoration: none;
 	}
