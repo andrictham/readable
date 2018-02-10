@@ -22,7 +22,7 @@ const NavBar = props => (
 				Readable
 			</Link>
 		</AppTitle>
-		<AddPostButton to="/edit-post">Add Post</AddPostButton>
+		<AddPostButton to="/add">Add Post</AddPostButton>
 	</Header>
 )
 
