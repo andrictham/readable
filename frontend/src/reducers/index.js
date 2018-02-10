@@ -34,7 +34,7 @@ const initialPostState = {
 	commentCount: 0,
 }
 
-const post = (state = initialPostState, action) => {
+const currentPost = (state = initialPostState, action) => {
 	switch (action.type) {
 		case GET_POST:
 			return action.post
@@ -66,7 +66,7 @@ const comments = (state = {}, action) => {
 
 export default combineReducers({
 	posts,
-	currentPost: post,
+	currentPost,
 	categories,
 	comments,
 	form: formReducer,
