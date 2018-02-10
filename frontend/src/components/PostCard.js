@@ -1,9 +1,10 @@
 import React from 'react'
 import moment from 'moment'
-import { Flex, Box, Card, Badge, Subhead } from 'rebass'
+import { Flex, Box, Card, Badge, Subhead, Text } from 'rebass'
 import styled from 'styled-components'
-import { MAIN, FADED } from '../utils/colors'
-import { FaArrowUp, FaArrowDown } from 'react-icons/lib/fa'
+import Pluralize from 'react-pluralize'
+import { MAIN } from '../utils/colors'
+import VoteCounter from '../components/VoteCounter'
 
 const PostCard = ({
 	id,
@@ -13,6 +14,7 @@ const PostCard = ({
 	category,
 	timestamp,
 	voteScore,
+	commentCount,
 }) => (
 	<PostCardContainer p={3} m={3} width={[1, 5 / 6, null, 3 / 4]}>
 		<p>
@@ -26,8 +28,20 @@ const PostCard = ({
 		</Subhead>
 
 		<PostBody>{body}</PostBody>
-
-		<VoteCounter voteScore={voteScore} />
+		<Flex align="center">
+			<Box w={1 / 2}>
+				<VoteCounter voteScore={voteScore} />
+			</Box>
+			<Box w={1 / 2}>
+				<Text right>
+					<Pluralize
+						singular="comment"
+						plural="comments"
+						count={commentCount}
+					/>
+				</Text>
+			</Box>
+		</Flex>
 	</PostCardContainer>
 )
 
@@ -37,37 +51,6 @@ const PostCardContainer = styled(Card)`
 
 const PostBody = styled.p`
 	line-height: 150%;
-`
-
-const VoteCounter = ({ voteScore }) => {
-	return (
-		<Flex align="center" my={3}>
-			<Box pr={3}>
-				<UpVoteButton />
-			</Box>
-			<Box pr={3}>
-				<VoteScoreNumber>{voteScore}</VoteScoreNumber>
-			</Box>
-			<Box pr={3}>
-				<DownVoteButton />
-			</Box>
-		</Flex>
-	)
-}
-
-const VoteScoreNumber = styled.div`
-	text-align: center;
-	padding-top: 2px;
-	font-size: 1.2rem;
-	font-weight: 700;
-`
-
-const UpVoteButton = styled(FaArrowUp)`
-	color: ${FADED};
-`
-
-const DownVoteButton = styled(FaArrowDown)`
-	color: ${FADED};
 `
 
 export default PostCard

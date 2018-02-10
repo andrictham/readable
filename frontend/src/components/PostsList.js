@@ -16,6 +16,7 @@ const PostsList = ({ posts }) => (
 					category={post.category}
 					timestamp={post.timestamp}
 					voteScore={post.voteScore}
+					commentCount={post.commentCount}
 				/>
 			))}
 		</Posts>
