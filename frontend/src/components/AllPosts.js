@@ -37,9 +37,9 @@ class AllPosts extends Component {
 
 		const compare = (a, b) => {
 			if (this.state.sortedBy === 'latest') {
-				return a.timestamp < b.timestamp
+				return b.timestamp - a.timestamp
 			} else if (this.state.sortedBy === 'popular') {
-				return a.voteScore < b.voteScore
+				return b.voteScore - a.voteScore
 			}
 		}
 
