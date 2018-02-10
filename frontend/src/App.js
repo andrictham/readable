@@ -4,6 +4,7 @@ import NavBar from './components/NavBar'
 import AllPosts from './components/AllPosts'
 import AddPost from './components/AddPost'
 import EditPost from './components/EditPost'
+import PostCard from './components/PostCard'
 import styled, { injectGlobal } from 'styled-components'
 import { BG_BOTTOM } from './utils/colors'
 
@@ -13,6 +14,7 @@ const App = props => (
 		<Switch>
 			<Route exact path="/add" component={AddPost} />
 			<Route exact path="/edit/:id" component={EditPost} />
+			<Route exact path="/post/:id" component={PostCard} />
 			<Route exact path="/:category?" component={AllPosts} />
 		</Switch>
 	</Main>
