@@ -24,21 +24,6 @@ class EditPost extends Component {
 				isLoading: false,
 			}))
 		}
-
-		// // TODO: Refactor add+edit from one route to two separate routes so we don’t need to do this hack.
-		// nextProps.history.listen((location, action) => {
-		// 	if (location.pathname === '/edit-post') {
-		// 		this.props.clearCurrentPost()
-		// 		this.setState(() => ({
-		// 			isEditing: false,
-		// 		}))
-		// 	} else if (location.pathname.match('/edit-post/*')) {
-		// 		this.props.getPostRequest(this.props.match.params.id)
-		// 		this.setState(() => ({
-		// 			isEditing: true,
-		// 		}))
-		// 	}
-		// })
 	}
 
 	submitForm = formValues => {
