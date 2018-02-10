@@ -27,6 +27,19 @@ const defaultData = {
 		deleted: false,
 		commentCount: 0,
 	},
+	'0ng4ok6yf7781p34ldez': {
+		id: '0ng4ok6yf7781p34ldez',
+		timestamp: 1518237409007,
+		title:
+			'USD is Amazing!! Transferred 10 dollars ($10) for a pizza and it took 600 seconds.',
+		body:
+			'im sure this has been posted before, but i was too excited not to share with the community. I just transferred over 10 dollars ($10) for 1 pizza. 10 is what it costed, and it took like 600 seconds. transferred from hand wallet (cause space feel) to hand wallet. I trust hand wallet enough to use them.',
+		author: 'Zelius',
+		category: 'cryptocurrency',
+		voteScore: 7,
+		deleted: false,
+		commentCount: 1,
+	},
 }
 
 function getData (token) {
