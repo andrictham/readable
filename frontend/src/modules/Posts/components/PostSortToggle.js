@@ -27,7 +27,10 @@ const SortSwitch = styled(Button)`
 	border: 1px solid ${MAIN};
 	cursor: pointer;
 	&:focus {
-		border-color: ${BG_BOTTOM};
+		box-shadow: none;
+	}
+	&:hover {
+		box-shadow: inset 0px 0px 0px 2px ${MAIN};
 	}
 	transition: ${TRANSITION_SNAPPY};
 `
