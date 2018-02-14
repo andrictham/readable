@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addPostRequest } from '../../actions'
+import { addPostRequest, getCategoriesRequest } from '../../actions'
 import { reduxForm } from 'redux-form'
 import { Flex, Box, Heading } from 'rebass'
 import { BG_TOP } from '../../utils/colors'
@@ -17,8 +17,13 @@ class AddPost extends Component {
 			title: formValues.postTitle,
 			body: formValues.postBody,
 			author: formValues.authorName,
-			category: 'cryptocurrency',
+			category: formValues.postCategory.value,
 		})
+	}
+
+	componentDidMount() {
+		const { getCategoriesRequest } = this.props
+		getCategoriesRequest()
 	}
 
 	render() {
@@ -37,6 +42,7 @@ class AddPost extends Component {
 						onSubmit={this.submitForm}
 						isLoading={false}
 						isEditing={false}
+						categories={this.props.categories}
 						{...this.props}
 					/>
 				</Box>
@@ -49,8 +55,20 @@ const AddPostContainer = reduxForm({
 	form: 'addPost',
 })(AddPost)
 
-const mapDispatchToProps = dispatch => {
-	return bindActionCreators({ addPostRequest }, dispatch)
+const mapStateToProps = ({ categories }) => {
+	const categoriesArray = Object.keys(categories).map(key => {
+		return {
+			value: categories[key].name,
+			label: categories[key].name,
+		}
+	})
+	return {
+		categories: categoriesArray,
+	}
 }
 
-export default connect(null, mapDispatchToProps)(AddPostContainer)
+const mapDispatchToProps = dispatch => {
+	return bindActionCreators({ addPostRequest, getCategoriesRequest }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddPostContainer)
