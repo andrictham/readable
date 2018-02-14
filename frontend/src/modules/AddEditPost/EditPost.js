@@ -35,11 +35,13 @@ class EditPost extends Component {
 
 	submitForm = formValues => {
 		console.log('Submitting form: ', formValues)
-		this.props.editPostRequest({
-			id: this.props.currentPost.id,
-			title: formValues.postTitle,
-			body: formValues.postBody,
-		})
+		this.props
+			.editPostRequest({
+				id: this.props.currentPost.id,
+				title: formValues.postTitle,
+				body: formValues.postBody,
+			})
+			.then(this.props.history.push(`/post/${this.props.match.params.id}`)) // Redirect to post detail view after successful submission
 	}
 
 	render() {

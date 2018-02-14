@@ -12,14 +12,16 @@ import BackButton from './components/BackButton'
 class AddPost extends Component {
 	submitForm = formValues => {
 		console.log('Submitting form: ', formValues)
-		this.props.addPostRequest({
-			id: uniqid.process(),
-			timestamp: Date.now(),
-			title: formValues.postTitle,
-			body: formValues.postBody,
-			author: formValues.authorName,
-			category: formValues.postCategory.value,
-		})
+		this.props
+			.addPostRequest({
+				id: uniqid.process(),
+				timestamp: Date.now(),
+				title: formValues.postTitle,
+				body: formValues.postBody,
+				author: formValues.authorName,
+				category: formValues.postCategory.value,
+			})
+			.then(this.props.history.push('/')) // Redirect to list of all posts after successful submission
 	}
 
 	componentDidMount() {
