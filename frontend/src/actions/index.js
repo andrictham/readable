@@ -1,9 +1,16 @@
-import { getPosts, getPost, addPost, getCategories } from '../utils/api'
+import {
+	getPosts,
+	getPost,
+	addPost,
+	editPost,
+	getCategories,
+} from '../utils/api'
 
 export const ADD_POST = 'ADD_POST'
 export const GET_POSTS = 'GET_POSTS'
 export const GET_POST = 'GET_POST'
 export const GET_CATEGORIES = 'GET_CATEGORIES'
+export const EDIT_POST = 'EDIT_POST'
 
 // ===	===	===	===	=== === === ===
 //			C A T E G O R I E S
@@ -79,6 +86,23 @@ export const addPostRequest = post => dispatch => {
 const addPostSuccess = post => ({
 	type: ADD_POST,
 	post,
+})
+
+// Edit a post
+
+export const editPostRequest = editedPost => dispatch => {
+	return editPost(editedPost)
+		.then(editedPost => {
+			dispatch(editPostSuccess(editedPost))
+		})
+		.catch(error => {
+			throw error
+		})
+}
+
+const editPostSuccess = editedPost => ({
+	type: EDIT_POST,
+	editedPost,
 })
 
 // ===	===	===	===	===	===

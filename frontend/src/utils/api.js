@@ -68,7 +68,7 @@ export const votePost = (id, vote) => {
 
 // PUT /posts/:id
 // Edit the details of an existing post.
-export const editPost = (id, title, body) => {
+export const editPost = ({ id, title, body }) => {
 	return api
 		.put(`/posts/${id}`, {
 			id,

@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getPostRequest, getCategoriesRequest } from '../../actions'
+import {
+	getPostRequest,
+	getCategoriesRequest,
+	editPostRequest,
+} from '../../actions'
 import { reduxForm } from 'redux-form'
 import { Flex, Box, Heading } from 'rebass'
 import { BG_TOP } from '../../utils/colors'
@@ -31,6 +35,11 @@ class EditPost extends Component {
 
 	submitForm = formValues => {
 		console.log('Submitting form: ', formValues)
+		this.props.editPostRequest({
+			id: this.props.currentPost.id,
+			title: formValues.postTitle,
+			body: formValues.postBody,
+		})
 	}
 
 	render() {
@@ -84,7 +93,10 @@ const mapStateToProps = ({ currentPost, categories }) => {
 }
 
 const mapDispatchToProps = dispatch => {
-	return bindActionCreators({ getPostRequest, getCategoriesRequest }, dispatch)
+	return bindActionCreators(
+		{ getPostRequest, getCategoriesRequest, editPostRequest },
+		dispatch,
+	)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPostContainer)
