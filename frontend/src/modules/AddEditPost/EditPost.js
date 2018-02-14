@@ -41,7 +41,9 @@ class EditPost extends Component {
 				title: formValues.postTitle,
 				body: formValues.postBody,
 			})
-			.then(this.props.history.push(`/post/${this.props.match.params.id}`)) // Redirect to post detail view after successful submission
+			.then(this.props.history.push(`/post/${this.props.match.params.id}`))
+			.then(this.props.notify(`📝  Post updated!`))
+		// Redirect to post detail view after successful submission, then show success toast
 	}
 
 	render() {
