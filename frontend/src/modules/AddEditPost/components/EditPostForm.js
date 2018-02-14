@@ -24,26 +24,10 @@ const EditPostForm = ({
 		{/* TODO: Use react-select and load in the list of categories here */}
 		<Field
 			component={TextField}
-			type="select"
-			name="postCategory"
-			label="Category"
-			options={categories}
-			disabled={isEditing}
-		/>
-		<Field
-			component={TextField}
 			type="input"
 			name="postTitle"
 			label="Title"
 			placeholder="This is the title of your post"
-			disabled={isLoading}
-		/>
-		<Field
-			component={TextField}
-			type="input"
-			name="authorName"
-			label="Your Name"
-			placeholder="John Appleseed"
 			disabled={isLoading}
 		/>
 		<Field
@@ -53,6 +37,22 @@ const EditPostForm = ({
 			label="Body"
 			placeholder="Say something nice or wicked"
 			disabled={isLoading}
+		/>
+		<Field
+			component={TextField}
+			type="input"
+			name="authorName"
+			label={isEditing ? 'Posted by' : 'Your Name'}
+			placeholder="John Appleseed"
+			disabled={isEditing}
+		/>
+		<Field
+			component={TextField}
+			type="select"
+			name="postCategory"
+			label={isEditing ? 'Posted in' : 'Category'}
+			options={categories}
+			disabled={isEditing}
 		/>
 		<SubmitButton
 			type="submit"
@@ -84,7 +84,7 @@ const TextField = props => {
 					placeholder={placeholder}
 					disabled={disabled}
 					mb={3}
-					p={3}
+					p={2}
 				/>
 			)}
 			{type === 'textarea' && (
@@ -95,7 +95,7 @@ const TextField = props => {
 					placeholder={placeholder}
 					disabled={disabled}
 					mb={3}
-					p={3}
+					p={2}
 					rows={6}
 				/>
 			)}
@@ -137,6 +137,7 @@ const StyledSelect = styled(Select)`
 			props.disabled &&
 			css`
 				cursor: not-allowed;
+				border: none;
 				span {
 					color: ${FADED} !important;
 				}
