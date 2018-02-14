@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Group, Button, Box } from 'rebass'
-import { MAIN, BG_TOP, BG_BOTTOM } from '../../../utils/colors'
+import { MAIN, BG_TOP } from '../../../utils/colors'
 import { TRANSITION_SNAPPY } from '../../../utils/transitions'
 
 const PostSortToggle = ({ sortedBy, onToggle }) => (
