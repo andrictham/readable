@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addPostRequest, getCategoriesRequest } from '../../actions'
 import { reduxForm } from 'redux-form'
+import uniqid from 'uniqid'
 import { Flex, Box, Heading } from 'rebass'
 import { BG_TOP } from '../../utils/colors'
 import EditPostForm from './components/EditPostForm'
@@ -12,7 +13,7 @@ class AddPost extends Component {
 	submitForm = formValues => {
 		console.log('Submitting form: ', formValues)
 		this.props.addPostRequest({
-			id: Math.random(), // TODO: UDID
+			id: uniqid.process(),
 			timestamp: Date.now(),
 			title: formValues.postTitle,
 			body: formValues.postBody,
