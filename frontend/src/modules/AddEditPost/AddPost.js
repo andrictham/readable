@@ -19,9 +19,10 @@ class AddPost extends Component {
 				title: formValues.postTitle,
 				body: formValues.postBody,
 				author: formValues.authorName,
-				category: formValues.postCategory.value,
+				category: formValues.postCategory && formValues.postCategory.value,
 			})
-			.then(this.props.history.push('/')) // Redirect to list of all posts after successful submission
+			.then(this.props.history.push('/'))
+			.then(this.props.notify(`🎉  Post added – “${formValues.postTitle}”`)) // Redirect to list of all posts after successful submission
 	}
 
 	componentDidMount() {

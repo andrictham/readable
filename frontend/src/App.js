@@ -5,20 +5,36 @@ import AllPosts from './modules/Posts/AllPosts'
 import AddPost from './modules/AddEditPost/AddPost'
 import EditPost from './modules/AddEditPost/EditPost'
 import PostDetail from './modules/Posts/PostDetail'
+import { ToastContainer, toast } from 'react-toastify'
 import styled, { injectGlobal } from 'styled-components'
-import { BG_BOTTOM } from './utils/colors'
+import { BG_BOTTOM, MAIN } from './utils/colors'
 
-const App = props => (
-	<Main>
-		<NavBar />
-		<Switch>
-			<Route exact path="/add" component={AddPost} />
-			<Route exact path="/edit/:id" component={EditPost} />
-			<Route exact path="/post/:id" component={PostDetail} />
-			<Route exact path="/:category?" component={AllPosts} />
-		</Switch>
-	</Main>
-)
+const App = props => {
+	const notify = message =>
+		toast.info(message, {
+			position: toast.POSITION.BOTTOM_CENTER,
+			className: 'toast',
+		})
+	return (
+		<Main>
+			<NavBar />
+			<ToastContainer />
+			<Switch>
+				<Route
+					exact
+					path="/add"
+					render={props => <AddPost notify={notify} {...props} />}
+				/>
+				<Route exact path="/edit/:id" component={EditPost} />
+				<Route exact path="/post/:id" component={PostDetail} />
+				<Route exact path="/:category?" component={AllPosts} />
+			</Switch>
+		</Main>
+	)
+}
+
+const fontFamily =
+	"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'"
 
 const Main = styled.div`
 	padding-bottom: 2rem;
@@ -31,12 +47,21 @@ injectGlobal`
   body {
 		margin: 0;
 		padding: 0;
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-		background: ${BG_BOTTOM}
+		font-family: ${fontFamily};
+		background: ${BG_BOTTOM};
 	}
 	button:disabled,
 	button[disabled]{
   	cursor: not-allowed;
+	}
+	.toast {
+		background: ${MAIN};
+		padding: 1.2rem 1.2rem 1.3rem;
+		border-radius: 4px;
+		font-family: ${fontFamily};
+		font-weight: 500;
+		line-height: 1.5;
+		font-size: 1rem;
 	}
 `
 
