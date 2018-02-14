@@ -131,7 +131,7 @@ const StyledTextarea = styled(Textarea)`
 `
 
 const StyledSelect = styled(Select)`
-	padding-bottom: 16px;
+	margin-bottom: 24px;
 	div {
 		${props =>
 			props.disabled &&
