@@ -10,6 +10,7 @@ import {
 	BG_BOTTOM,
 	MAIN,
 } from '../utils/colors'
+import { TRANSITION_SNAPPY } from '../utils/transitions'
 
 const NavBar = props => (
 	<Header>
@@ -50,6 +51,11 @@ const AddPostButton = styled(Link)`
 	text-decoration: none;
 	color: ${MAIN};
 	background-color: ${BG_BOTTOM};
+	transition: ${TRANSITION_SNAPPY};
+	&:hover {
+		transform: scale(0.95);
+		opacity: 0.9;
+	}
 `
 
 const AppTitle = styled(Heading)`
@@ -57,6 +63,10 @@ const AppTitle = styled(Heading)`
 	font-weight: 600;
 	& a {
 		text-decoration: none;
+	}
+	transition: ${TRANSITION_SNAPPY};
+	&:hover {
+		opacity: 0.8;
 	}
 `
 
