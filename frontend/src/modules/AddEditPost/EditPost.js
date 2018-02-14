@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getPostRequest } from '../../actions'
+import { getPostRequest, getCategoriesRequest } from '../../actions'
 import { reduxForm } from 'redux-form'
 import { Flex, Box, Heading } from 'rebass'
 import { BG_TOP } from '../../utils/colors'
@@ -14,16 +14,18 @@ class EditPost extends Component {
 	}
 
 	componentDidMount() {
-		const { getPostRequest, match } = this.props
+		const { getPostRequest, getCategoriesRequest, match } = this.props
 		getPostRequest(match.params.id)
+		getCategoriesRequest()
 	}
 
 	componentWillReceiveProps(nextProps) {
 		// If component is rerendering because it’s receiving new props from Redux, we want to set loading to false
-		if (nextProps.currentPost.id) {
+		if (nextProps.currentPost.id && nextProps.categories.length > 1) {
 			this.setState(() => ({
 				isLoading: false,
 			}))
+			console.log(nextProps.categories)
 		}
 	}
 
@@ -47,6 +49,7 @@ class EditPost extends Component {
 						isEditing={true}
 						isLoading={this.state.isLoading}
 						onSubmit={this.submitForm}
+						categories={this.props.categories}
 						{...this.props}
 					/>
 				</Box>
@@ -60,19 +63,28 @@ const EditPostContainer = reduxForm({
 	enableReinitialize: true,
 })(EditPost)
 
-const mapStateToProps = ({ currentPost }) => {
+const mapStateToProps = ({ currentPost, categories }) => {
+	const categoriesArray = Object.keys(categories).map(key => {
+		return {
+			value: categories[key].name,
+			label: categories[key].name,
+		}
+	})
 	return {
+		// Prepopulate form with post data
 		initialValues: {
 			postTitle: currentPost.title,
 			authorName: currentPost.author,
 			postBody: currentPost.body,
+			postCategory: currentPost.category,
 		},
 		currentPost,
+		categories: categoriesArray,
 	}
 }
 
 const mapDispatchToProps = dispatch => {
-	return bindActionCreators({ getPostRequest }, dispatch)
+	return bindActionCreators({ getPostRequest, getCategoriesRequest }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPostContainer)
