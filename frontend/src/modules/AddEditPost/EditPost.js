@@ -48,7 +48,7 @@ class EditPost extends Component {
 
 	deletePost = () => {
 		console.log('Deleted post!')
-		this.props.history.push(`/post/${this.props.match.params.id}`)
+		this.props.history.push('/')
 		this.props.notify(`☠️  Post deleted!`)
 	}
 
