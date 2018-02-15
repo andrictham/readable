@@ -21,7 +21,7 @@ const PostContents = ({
 }) => {
 	return (
 		<div>
-			<Flex align="center" pb={1}>
+			<Flex align="center" pb={2}>
 				<Box w={1 / 2}>
 					<p>
 						<strong>{author}</strong> &nbsp;
@@ -29,7 +29,7 @@ const PostContents = ({
 					</p>
 				</Box>
 				<Box w={1 / 2}>
-					<Text right>
+					<Text right mb={1} mt={-1}>
 						{currentPost && (
 							<EditPostButton to={`/edit/${currentPost.id}`}>
 								Edit
@@ -76,7 +76,7 @@ const EditPostButton = styled(Link)`
 	font-size: 0.75rem;
 	font-weight: 600;
 	border-radius: 2rem;
-	padding: 0.5rem 1rem;
+	padding: 0.3rem 1rem 0.35rem;
 	border: 0;
 	text-decoration: none;
 	color: ${BG_TOP};
