@@ -65,6 +65,7 @@ const mapStateToProps = ({ categories }) => {
 		return {
 			value: categories[key].name,
 			label: categories[key].name,
+			// react-select expects an array of objects with value and label props, which it uses to render the dropdown list’s items.
 		}
 	})
 	return {
