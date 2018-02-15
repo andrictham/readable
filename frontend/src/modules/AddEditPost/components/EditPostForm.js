@@ -1,20 +1,30 @@
 import React from 'react'
 import { Field } from 'redux-form'
-import { Box, Label, Input, Textarea, Button } from 'rebass'
+import {
+	Flex,
+	Box,
+	Label,
+	Input,
+	Textarea,
+	Button,
+	ButtonOutline,
+	Tooltip,
+} from 'rebass'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import styled, { css } from 'styled-components'
-import { MAIN, FADED } from '../../../utils/colors'
+import { MAIN, FADED, DANGER } from '../../../utils/colors'
 import { TRANSITION_SNAPPY } from '../../../utils/transitions'
 
 const EditPostForm = ({
 	categories,
 	isEditing,
 	isLoading,
-	pristine,
-	submitting,
+	pristine, // provided by Redux Form
+	submitting, // provided by Redux Form
 	handleSubmit, // a built-in method that Redux Form gives us for free.
 	onSubmit, // our custom submit function, that we will pass to Redux Form
+	onDelete,
 }) => (
 	<Box
 		is="form"
@@ -54,15 +64,57 @@ const EditPostForm = ({
 			options={categories}
 			disabled={isEditing}
 		/>
-		<SubmitButton
-			type="submit"
-			disabled={pristine || submitting || isLoading}
-			my={3}
-		>
-			{isEditing ? 'Update Post' : 'Add Post'}
-		</SubmitButton>
+		<Flex>
+			<Box my={3} mr={2}>
+				<SubmitButton
+					type="submit"
+					disabled={pristine || submitting || isLoading}
+				>
+					{submitting
+						? 'Submitting...'
+						: isEditing ? 'Update Post' : 'Add Post'}
+				</SubmitButton>
+			</Box>
+			<Box my={3}>
+				{isEditing && (
+					<Tooltip text="⚠️   Are you sure? This cannot be undone.">
+						<DeleteButton
+							onClick={e => {
+								e.preventDefault()
+								onDelete()
+							}}
+							disabled={isLoading}
+						>
+							Delete Post
+						</DeleteButton>
+					</Tooltip>
+				)}
+			</Box>
+		</Flex>
 	</Box>
 )
+
+const SubmitButton = styled(Button)`
+	background-color: ${MAIN};
+	font-weight: 600;
+	cursor: pointer;
+	padding: 0.8rem 1.4rem;
+	transition: ${TRANSITION_SNAPPY};
+`
+
+const DeleteButton = styled(ButtonOutline)`
+	color: ${DANGER};
+	border-color: ${DANGER}
+	box-shadow: inset 0 0 0 2px ${DANGER};
+	font-weight: 600;
+	cursor: pointer;
+	padding: 0.8rem 1.4rem;
+	transition: ${TRANSITION_SNAPPY};
+	&:hover {
+		background-color: ${DANGER};
+		box-shadow: inset 0 0 0 8px ${DANGER};
+	}
+`
 
 const TextField = props => {
 	// This is a custom component which will be passed to Redux Form’s <Field /> component.
@@ -143,13 +195,6 @@ const StyledSelect = styled(Select)`
 				}
 			`};
 	}
-`
-
-const SubmitButton = styled(Button)`
-	background-color: ${MAIN};
-	cursor: pointer;
-	padding: 0.8rem 1.4rem;
-	transition: ${TRANSITION_SNAPPY};
 `
 
 export default EditPostForm

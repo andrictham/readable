@@ -16,4 +16,5 @@ export const BG_BOTTOM = SMOKE
 export const GRADIENT_1 = YELLOW
 export const GRADIENT_2 = ORANGE
 export const GRADIENT_3 = RED
+export const DANGER = RED
 export const SHADOW = `0px 3px 33px 1px ${GHOST}`

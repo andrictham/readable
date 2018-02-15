@@ -46,6 +46,12 @@ class EditPost extends Component {
 		// Redirect to post detail view after successful submission, then show success toast
 	}
 
+	deletePost = () => {
+		console.log('Deleted post!')
+		this.props.history.push(`/post/${this.props.match.params.id}`)
+		this.props.notify(`☠️  Post deleted!`)
+	}
+
 	render() {
 		return (
 			<Flex>
@@ -62,6 +68,7 @@ class EditPost extends Component {
 						isEditing={true}
 						isLoading={this.state.isLoading}
 						onSubmit={this.submitForm}
+						onDelete={this.deletePost}
 						categories={this.props.categories}
 						{...this.props}
 					/>
