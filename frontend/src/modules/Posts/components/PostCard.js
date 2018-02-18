@@ -14,7 +14,7 @@ const PostCard = props => (
 	</PostCardContainer>
 )
 
-const PostCardContainer = styled(Card)`
+const PostCardContainer = Card.extend`
 	box-shadow: none;
 	transition: ${TRANSITION_SMOOTH};
 	&:hover {

@@ -45,9 +45,10 @@ const VoteButton = ({ id, direction, onVote }) => {
 
 const ArrowButton = styled.button`
 	border: none;
+	background-color: transparent;
 	font-size: inherit;
 	cursor: pointer;
-	padding: 0;
+	padding: 10px 0;
 	&:focus {
 		outline: 0;
 	}
@@ -71,12 +72,12 @@ const ArrowButton = styled.button`
 			${props =>
 				props.direction === 'up' &&
 				css`
-					transform: translateY(-9px);
+					transform: translateY(-5px);
 				`};
 			${props =>
 				props.direction === 'down' &&
 				css`
-					transform: translateY(9px);
+					transform: translateY(5px);
 				`};
 		}
 	}
