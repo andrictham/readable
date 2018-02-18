@@ -85,15 +85,15 @@ export const deletePost = id => {
 	return api.delete(`posts/${id}`).then(res => res.data)
 }
 
+// ===	===	===	===	===	===
+//		 C O M M E N T S
+// ===	===	===	===	===	===
+
 // GET /posts/:id/comments
 // Get all the comments for a single post.
 export const getPostComments = id => {
 	return api.get(`/posts/${id}/comments`).then(res => res.data)
 }
-
-// ===	===	===	===	===	===
-//		 C O M M E N T S
-// ===	===	===	===	===	===
 
 // POST /comments
 // Add a comment to a post.

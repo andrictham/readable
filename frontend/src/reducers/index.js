@@ -8,6 +8,7 @@ import {
 	VOTE_POST,
 	DELETE_POST,
 	GET_CATEGORIES,
+	GET_POST_COMMENTS,
 } from '../actions'
 import omit from 'lodash/omit'
 
@@ -112,6 +113,13 @@ const categories = (state = {}, action) => {
 
 const comments = (state = {}, action) => {
 	switch (action.type) {
+		case GET_POST_COMMENTS:
+			const { comments } = action
+			let commentsObj = {}
+			comments.map(comment => {
+				return (commentsObj[comment.id] = comment)
+			})
+			return commentsObj
 		default:
 			return state
 	}

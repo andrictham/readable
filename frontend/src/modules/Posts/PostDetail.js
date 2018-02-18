@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getPostRequest, votePostRequest } from '../../actions'
-import { Flex, Box } from 'rebass'
+import {
+	getPostRequest,
+	votePostRequest,
+	getPostCommentsRequest,
+} from '../../actions'
+import { Flex, Box, Card } from 'rebass'
 import { BG_TOP } from '../../utils/colors'
+import { TRANSITION_SMOOTH } from '../../utils/transitions'
 import PostContents from './components/PostContents'
+import CommentContents from './components/CommentContents'
 
 class PostDetail extends Component {
 	state = {
@@ -12,8 +18,9 @@ class PostDetail extends Component {
 	}
 
 	componentDidMount() {
-		const { getPostRequest, match } = this.props
+		const { getPostRequest, getPostCommentsRequest, match } = this.props
 		getPostRequest(match.params.id)
+		getPostCommentsRequest(match.params.id)
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -25,7 +32,7 @@ class PostDetail extends Component {
 		}
 	}
 
-	onVote = (id, direction) => {
+	onPostVote = (id, direction) => {
 		const { votePostRequest } = this.props
 		console.log(`${direction}voted on ${id}`)
 		votePostRequest({
@@ -34,13 +41,22 @@ class PostDetail extends Component {
 		})
 	}
 
+	onCommentVote = (id, direction) => {
+		const { voteCommentRequest } = this.props
+		console.log(`${direction}voted on ${id}`)
+		// voteCommentRequest({
+		// 	id,
+		// 	vote: `${direction}Vote`,
+		// })
+	}
+
 	// TODO: Loading state
 
 	render() {
-		const { currentPost } = this.props
+		const { currentPost, comments } = this.props
 		return (
-			<Flex>
-				<Box w={1} p={3} bg={BG_TOP}>
+			<Flex direction="column" align="center">
+				<Box p={3} mb={[1, 3]} bg={BG_TOP} w={1}>
 					<PostContents
 						id={currentPost.id}
 						title={currentPost.title}
@@ -51,22 +67,54 @@ class PostDetail extends Component {
 						voteScore={currentPost.voteScore}
 						commentCount={currentPost.commentCount}
 						currentPost={currentPost}
-						onVote={this.onVote}
+						onVote={this.onPostVote}
 					/>
 				</Box>
+
+				{comments.map(comment => {
+					return (
+						<CommentCardContainer
+							py={2}
+							px={3}
+							my={[1, 2]}
+							width={[1, 11 / 12, 5 / 6, 3 / 4]}
+						>
+							<CommentContents
+								id={comment.id}
+								body={comment.body}
+								author={comment.author}
+								timestamp={comment.timestamp}
+								voteScore={comment.voteScore}
+								onVote={this.onCommentVote}
+							/>
+						</CommentCardContainer>
+					)
+				})}
 			</Flex>
 		)
 	}
 }
 
-const mapStateToProps = ({ currentPost }) => {
+const CommentCardContainer = Card.extend`
+	box-shadow: none;
+	transition: ${TRANSITION_SMOOTH};
+`
+
+const mapStateToProps = ({ currentPost, comments }) => {
+	const commentsArray = Object.keys(comments).map(key => {
+		return comments[key]
+	})
 	return {
 		currentPost,
+		comments: commentsArray,
 	}
 }
 
 const mapDispatchToProps = dispatch => {
-	return bindActionCreators({ getPostRequest, votePostRequest }, dispatch)
+	return bindActionCreators(
+		{ getPostRequest, votePostRequest, getPostCommentsRequest },
+		dispatch,
+	)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetail)

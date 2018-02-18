@@ -2,9 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import Truncate from 'react-truncate'
-import { Flex, Box, Badge, Subhead, Text } from 'rebass'
+import { Flex, Box, Text } from 'rebass'
 import styled from 'styled-components'
-import Pluralize from 'react-pluralize'
 import { MAIN, BG_TOP, BG_BOTTOM } from '../../../utils/colors'
 import { TRANSITION_SNAPPY } from '../../../utils/transitions'
 import VoteCounter from '../../../components/VoteCounter'
@@ -18,12 +17,11 @@ const PostContents = ({
 	timestamp,
 	voteScore,
 	commentCount,
-	currentPost,
 	onVote,
 	truncate,
 }) => {
 	return (
-		<Box>
+		<div>
 			<Flex align="center" pb={1}>
 				<Box w={1 / 2}>
 					<p>
@@ -33,20 +31,12 @@ const PostContents = ({
 				</Box>
 				<Box w={1 / 2}>
 					<Text right mb={1} mt={-1}>
-						{currentPost && (
-							<EditPostButton to={`/edit/${currentPost.id}`}>
-								Edit
-							</EditPostButton>
-						)}
+						<EditCommentButton to={`/edit-comment/${id}`}>
+							Edit
+						</EditCommentButton>
 					</Text>
 				</Box>
 			</Flex>
-			<Subhead>
-				{title}
-				<Badge bg={MAIN} ml={2} px={2}>
-					{category}
-				</Badge>
-			</Subhead>
 
 			<PostContentsBody>
 				{truncate ? (
@@ -62,17 +52,8 @@ const PostContents = ({
 				<Box w={1 / 2}>
 					<VoteCounter voteScore={voteScore} handleVote={onVote} id={id} />
 				</Box>
-				<Box w={1 / 2}>
-					<Text right>
-						<Pluralize
-							singular="comment"
-							plural="comments"
-							count={commentCount}
-						/>
-					</Text>
-				</Box>
 			</Flex>
-		</Box>
+		</div>
 	)
 }
 
@@ -80,7 +61,7 @@ const PostContentsBody = styled.p`
 	line-height: 150%;
 `
 
-const EditPostButton = styled(Link)`
+const EditCommentButton = styled(Link)`
 	text-decoration: none;
 	text-transform: uppercase;
 	letter-spacing: 1px;
