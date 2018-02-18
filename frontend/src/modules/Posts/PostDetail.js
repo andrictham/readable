@@ -6,12 +6,10 @@ import {
 	votePostRequest,
 	getPostCommentsRequest,
 } from '../../actions'
-import { Flex, Box, Card } from 'rebass'
+import { Flex, Box } from 'rebass'
 import { BG_TOP } from '../../utils/colors'
-import { TRANSITION_SMOOTH } from '../../utils/transitions'
-import { RESPONSIVE_SECTION } from '../../utils/sizing'
 import PostContents from './components/PostContents'
-import CommentContents from './components/CommentContents'
+import CommentsList from '../Comments/components/CommentsList'
 
 class PostDetail extends Component {
 	state = {
@@ -71,35 +69,11 @@ class PostDetail extends Component {
 						onVote={this.onPostVote}
 					/>
 				</Box>
-
-				{comments.map(comment => {
-					return (
-						<CommentCardContainer
-							py={2}
-							px={3}
-							my={[1, 2]}
-							width={RESPONSIVE_SECTION}
-						>
-							<CommentContents
-								id={comment.id}
-								body={comment.body}
-								author={comment.author}
-								timestamp={comment.timestamp}
-								voteScore={comment.voteScore}
-								onVote={this.onCommentVote}
-							/>
-						</CommentCardContainer>
-					)
-				})}
+				<CommentsList comments={comments} />
 			</Flex>
 		)
 	}
 }
-
-const CommentCardContainer = Card.extend`
-	box-shadow: none;
-	transition: ${TRANSITION_SMOOTH};
-`
 
 const mapStateToProps = ({ currentPost, comments }) => {
 	const commentsArray = Object.keys(comments).map(key => {
