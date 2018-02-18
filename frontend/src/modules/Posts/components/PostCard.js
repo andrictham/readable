@@ -4,10 +4,11 @@ import { Card } from 'rebass'
 import styled from 'styled-components'
 import { SHADOW } from '../../../utils/colors'
 import { TRANSITION_SMOOTH } from '../../../utils/transitions'
+import { RESPONSIVE_SECTION } from '../../../utils/sizing'
 import PostContents from './PostContents'
 
 const PostCard = props => (
-	<PostCardContainer py={2} px={3} m={3} width={[1, 11 / 12, 5 / 6, 3 / 4]}>
+	<PostCardContainer py={2} px={3} m={3} width={RESPONSIVE_SECTION}>
 		<StyledLink to={`/post/${props.id}`}>
 			<PostContents {...props} />
 		</StyledLink>

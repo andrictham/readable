@@ -9,6 +9,7 @@ import {
 import { Flex, Box, Card } from 'rebass'
 import { BG_TOP } from '../../utils/colors'
 import { TRANSITION_SMOOTH } from '../../utils/transitions'
+import { RESPONSIVE_SECTION } from '../../utils/sizing'
 import PostContents from './components/PostContents'
 import CommentContents from './components/CommentContents'
 
@@ -77,7 +78,7 @@ class PostDetail extends Component {
 							py={2}
 							px={3}
 							my={[1, 2]}
-							width={[1, 11 / 12, 5 / 6, 3 / 4]}
+							width={RESPONSIVE_SECTION}
 						>
 							<CommentContents
 								id={comment.id}

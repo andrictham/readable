@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import Pluralize from 'react-pluralize'
 import { MAIN, BG_TOP, BG_BOTTOM } from '../../../utils/colors'
 import { TRANSITION_SNAPPY } from '../../../utils/transitions'
+import { RESPONSIVE_SECTION } from '../../../utils/sizing'
 import VoteCounter from '../../../components/VoteCounter'
 
 const PostContents = ({
@@ -23,7 +24,7 @@ const PostContents = ({
 	truncate,
 }) => {
 	return (
-		<Box>
+		<Box m="auto" width={currentPost && RESPONSIVE_SECTION} alignItems="center">
 			<Flex align="center" pb={1}>
 				<Box w={1 / 2}>
 					<p>
