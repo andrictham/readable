@@ -8,8 +8,9 @@ import {
 	Textarea,
 	Button,
 	ButtonOutline,
-	Tooltip,
 } from 'rebass'
+import { Tooltip } from 'react-tippy'
+import 'react-tippy/dist/tippy.css'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import styled, { css } from 'styled-components'
@@ -77,7 +78,18 @@ const EditPostForm = ({
 			</Box>
 			<Box my={3}>
 				{isEditing && (
-					<Tooltip text="⚠️   Are you sure? This cannot be undone.">
+					<Tooltip
+						title="⚠️ Are you sure? This cannot be undone."
+						position="top"
+						trigger="mouseenter"
+						arrow
+						arrowSize="big"
+						distance={50}
+						duration={450}
+						followCursor
+						inertia
+						animateFill
+					>
 						<DeleteButton
 							onClick={e => {
 								e.preventDefault()
