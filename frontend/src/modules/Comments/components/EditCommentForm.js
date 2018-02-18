@@ -1,12 +1,10 @@
 import React from 'react'
 import { Field } from 'redux-form'
-import { Flex, Box, Button, ButtonOutline } from 'rebass'
+import { Flex, Box } from 'rebass'
 import { Tooltip } from 'react-tippy'
 import 'react-tippy/dist/tippy.css'
-import TextField from '../../../components/TextField'
-import styled from 'styled-components'
-import { MAIN, DANGER } from '../../../utils/colors'
-import { TRANSITION_SNAPPY } from '../../../utils/transitions'
+import FormField from '../../../components/FormField'
+import { SubmitButton, DeleteButton } from '../../../components/Buttons'
 
 const EditPostForm = ({
 	isEditing,
@@ -20,7 +18,7 @@ const EditPostForm = ({
 	<Box is="form" onSubmit={handleSubmit(onSubmit)} width={1}>
 		{/* TODO: Use react-select and load in the list of categories here */}
 		<Field
-			component={TextField}
+			component={FormField}
 			type="textarea"
 			name="postBody"
 			placeholder="Say something nice or wicked"
@@ -28,7 +26,7 @@ const EditPostForm = ({
 			disabled={isLoading}
 		/>
 		<Field
-			component={TextField}
+			component={FormField}
 			type="input"
 			name="authorName"
 			label={isEditing ? 'Posted by' : 'Your Name'}
@@ -75,27 +73,5 @@ const EditPostForm = ({
 		</Flex>
 	</Box>
 )
-
-const SubmitButton = styled(Button)`
-	background-color: ${MAIN};
-	font-weight: 600;
-	cursor: pointer;
-	padding: 0.8rem 1.4rem;
-	transition: ${TRANSITION_SNAPPY};
-`
-
-const DeleteButton = styled(ButtonOutline)`
-	color: ${DANGER};
-	border-color: ${DANGER}
-	box-shadow: inset 0 0 0 2px ${DANGER};
-	font-weight: 600;
-	cursor: pointer;
-	padding: 0.8rem 1.4rem;
-	transition: ${TRANSITION_SNAPPY};
-	&:hover {
-		background-color: ${DANGER};
-		box-shadow: inset 0 0 0 8px ${DANGER};
-	}
-`
 
 export default EditPostForm

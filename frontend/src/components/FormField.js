@@ -6,7 +6,7 @@ import 'react-select/dist/react-select.css'
 import styled, { css } from 'styled-components'
 import { FADED } from '../utils/colors'
 
-const TextField = props => {
+const FormField = props => {
 	// This is a custom component which will be passed to Redux Form’s <Field /> component.
 	// It wraps around our presentational components such as <Label />, <Input />. and <Textarea /> from Rebass.
 	// We also handle a bunch of stuff here, such as hooking up the label and the input using htmlFor and id on the label and input respectively.
@@ -88,18 +88,18 @@ const StyledSelect = styled(Select)`
 	}
 `
 
-TextField.defaultProps = {
+FormField.defaultProps = {
 	rows: 6,
 }
 
-TextField.propTypes = {
+FormField.propTypes = {
 	input: PropTypes.object.isRequired,
 	options: PropTypes.array,
 	type: PropTypes.string.isRequired,
 	label: PropTypes.string,
-	placeholder: PropTypes.string.isRequired,
+	placeholder: PropTypes.string,
 	rows: PropTypes.number,
 	disabled: PropTypes.bool,
 }
 
-export default TextField
+export default FormField
