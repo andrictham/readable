@@ -42,7 +42,7 @@ class PostDetail extends Component {
 	}
 
 	onCommentVote = (id, direction) => {
-		const { voteCommentRequest } = this.props
+		// const { voteCommentRequest } = this.props
 		console.log(`${direction}voted on ${id}`)
 		// voteCommentRequest({
 		// 	id,
@@ -74,7 +74,7 @@ class PostDetail extends Component {
 					/>
 				</Box>
 				<AddCommentBox parentId={currentPost.id} notify={notify} />
-				<CommentsList comments={comments} onVote={this.onCommentVote} />
+				<CommentsList comments={sortedComments} onVote={this.onCommentVote} />
 			</Flex>
 		)
 	}

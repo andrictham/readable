@@ -18,10 +18,10 @@ const defaultData = {
 		deleted: false,
 		parentDeleted: false,
 	},
-	'8tu4bsun805n8un48ve89': {
+	'7tt4bsun805n8un48ve89': {
 		id: '7tt4bsun805n8un48ve89',
 		parentId: '8xf0y6ziyjabvozdd253nd',
-		timestamp: 1469479767190,
+		timestamp: 1469469767190,
 		body: `Me bullish
 
     Media agency Magna forecasts that digital media will take 44 percent, or $237 billion, of all ad money spent globally in 2018, with that figure reaching 50 percent, or $291 billion, by 2020.
@@ -42,7 +42,7 @@ const defaultData = {
 		deleted: false,
 		parentDeleted: false,
 	},
-  '8tu4bsun805n8un48ve89': {
+	'8tu4bsun805n8un48ve89': {
 		id: '4un80s5n8ve8978tt4bun',
 		parentId: '0ng4ok6yf7781p34ldez',
 		timestamp: 1469469767190,
