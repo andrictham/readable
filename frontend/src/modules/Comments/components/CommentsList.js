@@ -1,10 +1,9 @@
 import React from 'react'
 import { Card } from 'rebass'
 import CommentContents from './CommentContents'
-import { TRANSITION_SMOOTH } from '../../../utils/transitions'
 import { RESPONSIVE_SECTION } from '../../../utils/sizing'
 
-const CommentsList = ({ comments }) =>
+const CommentsList = ({ comments, onVote }) =>
 	comments.map(comment => {
 		return (
 			<CommentCardContainer
@@ -20,7 +19,7 @@ const CommentsList = ({ comments }) =>
 					author={comment.author}
 					timestamp={comment.timestamp}
 					voteScore={comment.voteScore}
-					onVote={this.onCommentVote}
+					onVote={onVote}
 				/>
 			</CommentCardContainer>
 		)
@@ -28,7 +27,6 @@ const CommentsList = ({ comments }) =>
 
 const CommentCardContainer = Card.extend`
 	box-shadow: none;
-	transition: ${TRANSITION_SMOOTH};
 `
 
 export default CommentsList

@@ -10,6 +10,7 @@ import { Flex, Box } from 'rebass'
 import { BG_TOP } from '../../utils/colors'
 import PostContents from './components/PostContents'
 import CommentsList from '../Comments/components/CommentsList'
+import AddCommentBox from '../Comments/components/AddCommentBox'
 
 class PostDetail extends Component {
 	state = {
@@ -49,10 +50,13 @@ class PostDetail extends Component {
 		// })
 	}
 
+	sortByLatest = (a, b) => b.timestamp - a.timestamp
+
 	// TODO: Loading state
 
 	render() {
-		const { currentPost, comments } = this.props
+		const { currentPost, comments, notify } = this.props
+		const sortedComments = [].concat(comments.sort(this.sortByLatest))
 		return (
 			<Flex direction="column" align="center">
 				<Box p={3} mb={[1, 3]} bg={BG_TOP} w={1}>
@@ -69,7 +73,8 @@ class PostDetail extends Component {
 						onVote={this.onPostVote}
 					/>
 				</Box>
-				<CommentsList comments={comments} />
+				<AddCommentBox parentId={currentPost.id} notify={notify} />
+				<CommentsList comments={comments} onVote={this.onCommentVote} />
 			</Flex>
 		)
 	}

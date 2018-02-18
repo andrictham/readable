@@ -7,6 +7,7 @@ import {
 	deletePost,
 	getCategories,
 	getPostComments,
+	addComment,
 } from '../utils/api'
 
 export const GET_POSTS = 'GET_POSTS'
@@ -17,6 +18,7 @@ export const VOTE_POST = 'VOTE_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const GET_POST_COMMENTS = 'GET_POST_COMMENTS'
+export const ADD_COMMENT = 'ADD_COMMENT'
 
 // ===	===	===	===	=== === === ===
 //			C A T E G O R I E S
@@ -149,6 +151,8 @@ const deletePostSuccess = deletedPost => ({
 //		 C O M M E N T S
 // ===	===	===	===	===	===
 
+// Get all comments for a post
+
 export const getPostCommentsRequest = postID => dispatch => {
 	return getPostComments(postID)
 		.then(comments => {
@@ -162,4 +166,21 @@ export const getPostCommentsRequest = postID => dispatch => {
 const getPostCommentsSuccess = comments => ({
 	type: GET_POST_COMMENTS,
 	comments,
+})
+
+// Add a new comment for a post
+
+export const addCommentRequest = comment => dispatch => {
+	return addComment(comment)
+		.then(addedComment => {
+			dispatch(addCommentSuccess(addedComment))
+		})
+		.catch(error => {
+			throw error
+		})
+}
+
+const addCommentSuccess = addedComment => ({
+	type: ADD_COMMENT,
+	addedComment,
 })

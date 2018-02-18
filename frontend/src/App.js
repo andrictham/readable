@@ -30,7 +30,11 @@ const App = props => {
 					path="/edit/:id"
 					render={props => <EditPost notify={notify} {...props} />}
 				/>
-				<Route exact path="/post/:id" component={PostDetail} />
+				<Route
+					exact
+					path="/post/:id"
+					render={props => <PostDetail notify={notify} {...props} />}
+				/>
 				<Route exact path="/:category?" component={AllPosts} />
 			</Switch>
 		</Main>
