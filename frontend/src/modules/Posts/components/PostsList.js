@@ -5,7 +5,7 @@ import PostCard from './PostCard'
 
 const PostsList = ({ posts, onVote }) => (
 	<Box>
-		<Posts>
+		<Posts easing="ease-in-out" duration={500} staggerDurationBy={400}>
 			{posts.map(post => (
 				<PostCard
 					key={post.id}
@@ -18,6 +18,7 @@ const PostsList = ({ posts, onVote }) => (
 					voteScore={post.voteScore}
 					commentCount={post.commentCount}
 					onVote={onVote}
+					truncate
 				/>
 			))}
 		</Posts>

@@ -7,7 +7,7 @@ import { TRANSITION_SMOOTH } from '../../../utils/transitions'
 import PostContents from './PostContents'
 
 const PostCard = props => (
-	<PostCardContainer p={3} m={3} width={[1, 5 / 6, null, 3 / 4]}>
+	<PostCardContainer py={2} px={3} m={3} width={[1, 11 / 12, 5 / 6, 3 / 4]}>
 		<StyledLink to={`/post/${props.id}`}>
 			<PostContents {...props} />
 		</StyledLink>

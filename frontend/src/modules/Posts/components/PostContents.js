@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
+import Truncate from 'react-truncate'
 import { Flex, Box, Badge, Subhead, Text } from 'rebass'
 import styled from 'styled-components'
 import Pluralize from 'react-pluralize'
@@ -19,10 +20,11 @@ const PostContents = ({
 	commentCount,
 	currentPost,
 	onVote,
+	truncate,
 }) => {
 	return (
 		<div>
-			<Flex align="center" pb={2}>
+			<Flex align="center" pb={1}>
 				<Box w={1 / 2}>
 					<p>
 						<strong>{author}</strong> &nbsp;
@@ -46,7 +48,15 @@ const PostContents = ({
 				</Badge>
 			</Subhead>
 
-			<PostContentsBody>{body}</PostContentsBody>
+			<PostContentsBody>
+				{truncate ? (
+					<Truncate lines={2} ellipsis="...">
+						{body}
+					</Truncate>
+				) : (
+					body
+				)}
+			</PostContentsBody>
 
 			<Flex align="center">
 				<Box w={1 / 2}>

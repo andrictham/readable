@@ -7,7 +7,7 @@ import { FaArrowUp, FaArrowDown } from 'react-icons/lib/fa'
 
 const VoteCounter = ({ id, voteScore, handleVote }) => {
 	return (
-		<Flex align="center" my={3}>
+		<Flex align="center" my={2}>
 			<Box pr={3}>
 				<VoteButton direction="up" onVote={handleVote} id={id} />
 			</Box>
