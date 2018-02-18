@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Label, Input, Textarea } from 'rebass'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
@@ -9,14 +10,15 @@ const TextField = props => {
 	// This is a custom component which will be passed to Redux Form’s <Field /> component.
 	// It wraps around our presentational components such as <Label />, <Input />. and <Textarea /> from Rebass.
 	// We also handle a bunch of stuff here, such as hooking up the label and the input using htmlFor and id on the label and input respectively.
-	const { input, options, type, label, placeholder, disabled } = props
+	const { input, options, type, label, placeholder, rows, disabled } = props
 
 	return (
 		<div>
-			{console.log('options: ', options)}
-			<Label mt={2} mb={3} htmlFor={input.name}>
-				{label}
-			</Label>
+			{label && (
+				<Label mt={2} mb={3} htmlFor={input.name}>
+					{label}
+				</Label>
+			)}
 			{type === 'input' && (
 				<StyledInput
 					{...input} // Pass in all props that React Form gives us
@@ -37,7 +39,7 @@ const TextField = props => {
 					disabled={disabled}
 					mb={3}
 					p={2}
-					rows={6}
+					rows={rows}
 				/>
 			)}
 			{type === 'select' && (
@@ -85,5 +87,19 @@ const StyledSelect = styled(Select)`
 			`};
 	}
 `
+
+TextField.defaultProps = {
+	rows: 6,
+}
+
+TextField.propTypes = {
+	input: PropTypes.object.isRequired,
+	options: PropTypes.array,
+	type: PropTypes.string.isRequired,
+	label: PropTypes.string,
+	placeholder: PropTypes.string.isRequired,
+	rows: PropTypes.number,
+	disabled: PropTypes.bool,
+}
 
 export default TextField

@@ -9,6 +9,7 @@ import {
 	DELETE_POST,
 	GET_CATEGORIES,
 	GET_POST_COMMENTS,
+	ADD_COMMENT,
 } from '../actions'
 import omit from 'lodash/omit'
 
@@ -120,6 +121,12 @@ const comments = (state = {}, action) => {
 				return (commentsObj[comment.id] = comment)
 			})
 			return commentsObj
+		case ADD_COMMENT:
+			const { addedComment } = action
+			return {
+				...state,
+				[addedComment.id]: addedComment,
+			}
 		default:
 			return state
 	}
