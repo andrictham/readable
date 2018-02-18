@@ -5,17 +5,17 @@ import { FADED, MAIN } from '../utils/colors'
 import { TRANSITION_SNAPPY } from '../utils/transitions'
 import { FaArrowUp, FaArrowDown } from 'react-icons/lib/fa'
 
-const VoteCounter = ({ voteScore }) => {
+const VoteCounter = ({ voteScore, handleVote }) => {
 	return (
 		<Flex align="center" my={3}>
 			<Box pr={3}>
-				<VoteButton direction="up" />
+				<VoteButton direction="up" onVote={handleVote} />
 			</Box>
 			<Box pr={3}>
 				<VoteScoreNumber>{voteScore}</VoteScoreNumber>
 			</Box>
 			<Box pr={3}>
-				<VoteButton direction="down" />
+				<VoteButton direction="down" onVote={handleVote} />
 			</Box>
 		</Flex>
 	)
@@ -28,12 +28,13 @@ const VoteScoreNumber = styled.div`
 	font-weight: 700;
 `
 
-const VoteButton = ({ direction }) => {
+const VoteButton = ({ direction, onVote }) => {
 	return (
 		<ArrowButton
 			direction={direction}
 			onClick={e => {
 				e.preventDefault()
+				onVote(direction)
 			}}
 		>
 			{direction === 'up' && <FaArrowUp />}

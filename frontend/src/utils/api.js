@@ -61,7 +61,7 @@ export const votePost = (id, vote) => {
 	return api
 		.post(`/posts/${id}`, {
 			id,
-			option: vote,
+			option: vote, // upVote or downVote
 		})
 		.then(res => res.data)
 }

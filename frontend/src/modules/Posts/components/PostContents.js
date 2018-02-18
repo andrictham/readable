@@ -19,6 +19,10 @@ const PostContents = ({
 	commentCount,
 	currentPost,
 }) => {
+	const onVote = direction => {
+		console.log(`${direction} voted!`)
+		// TODO: Fire off action to vote on the actual post
+	}
 	return (
 		<div>
 			<Flex align="center" pb={2}>
@@ -49,7 +53,7 @@ const PostContents = ({
 
 			<Flex align="center">
 				<Box w={1 / 2}>
-					<VoteCounter voteScore={voteScore} />
+					<VoteCounter voteScore={voteScore} handleVote={onVote} />
 				</Box>
 				<Box w={1 / 2}>
 					<Text right>

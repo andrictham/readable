@@ -5,6 +5,7 @@ import {
 	GET_POST,
 	ADD_POST,
 	EDIT_POST,
+	VOTE_POST,
 	DELETE_POST,
 	GET_CATEGORIES,
 } from '../actions'
@@ -33,11 +34,28 @@ const posts = (state = {}, action) => {
 		case EDIT_POST:
 			const { editedPost } = action
 			return {
+				// First, clone all existing posts
 				...state,
+				// For the post that matches our editedPost,
 				[editedPost.id]: {
+					// Clone all existing properties of that post
 					...state[editedPost.id],
+					// Then, modify the title and body of that post
 					title: editedPost.title,
 					body: editedPost.body,
+				},
+			}
+		case VOTE_POST:
+			const { votedPost } = action
+			return {
+				// First, clone all existing posts
+				...state,
+				// For the post that matches our votedPost,
+				[votedPost.id]: {
+					// Clone all existing properties of that post
+					...state[votedPost.id],
+					// Then, modify the voteScore of that post
+					voteScore: votedPost.voteScore,
 				},
 			}
 		case DELETE_POST:
