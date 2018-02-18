@@ -59,6 +59,7 @@ const PostContents = ({
 
 const PostContentsBody = styled.p`
 	line-height: 150%;
+	white-space: pre-line;
 `
 
 const EditCommentButton = styled(Link)`
