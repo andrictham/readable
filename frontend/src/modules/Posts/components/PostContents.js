@@ -24,7 +24,7 @@ const PostContents = ({
 	truncate,
 }) => {
 	return (
-		<Box m="auto" width={currentPost && RESPONSIVE_SECTION} alignItems="center">
+		<Box m="auto" width={currentPost && RESPONSIVE_SECTION}>
 			<Flex align="center" pb={1}>
 				<Box w={1 / 2}>
 					<p>
