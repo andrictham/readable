@@ -56,6 +56,10 @@ const AddPostButton = styled(Link)`
 		transform: scale(0.95);
 		opacity: 0.9;
 	}
+	&:active {
+		transform: scale(0.8);
+		opacity: 0.9;
+	}
 `
 
 const AppTitle = styled(Heading)`
@@ -66,6 +70,10 @@ const AppTitle = styled(Heading)`
 	}
 	transition: ${TRANSITION_SNAPPY};
 	&:hover {
+		opacity: 0.8;
+	}
+	&:active {
+		transform: scale(0.95);
 		opacity: 0.8;
 	}
 `
