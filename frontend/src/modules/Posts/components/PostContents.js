@@ -50,7 +50,7 @@ const PostContents = ({
 
 			<Flex align="center">
 				<Box w={1 / 2}>
-					<VoteCounter voteScore={voteScore} handleVote={onVote} />
+					<VoteCounter voteScore={voteScore} handleVote={onVote} id={id} />
 				</Box>
 				<Box w={1 / 2}>
 					<Text right>

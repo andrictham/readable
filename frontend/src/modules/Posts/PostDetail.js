@@ -25,9 +25,13 @@ class PostDetail extends Component {
 		}
 	}
 
-	onVote = direction => {
-		console.log(`${direction} voted!`)
-		// TODO: Fire off action to vote on the actual post
+	onVote = (id, direction) => {
+		const { votePostRequest } = this.props
+		console.log(`${direction}voted on ${id}`)
+		votePostRequest({
+			id,
+			vote: `${direction}Vote`,
+		})
 	}
 
 	// TODO: Loading state

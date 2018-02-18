@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getPostsRequest, getCategoriesRequest } from '../../actions'
+import {
+	getPostsRequest,
+	getCategoriesRequest,
+	votePostRequest,
+} from '../../actions'
 import PostCategoryFilter from './components/PostCategoryFilter'
 import PostSortToggle from './components/PostSortToggle'
 import PostsList from './components/PostsList'
@@ -26,9 +30,13 @@ class AllPosts extends Component {
 		}
 	}
 
-	onVote = direction => {
-		console.log(`${direction} voted!`)
-		// TODO: Fire off action to vote on the actual post
+	onVote = (id, direction) => {
+		const { votePostRequest } = this.props
+		console.log(`${direction}voted on ${id}`)
+		votePostRequest({
+			id,
+			vote: `${direction}Vote`,
+		})
 	}
 
 	render() {
@@ -71,7 +79,10 @@ const PostsViewControls = styled.div`
 `
 
 const mapDispatchToProps = dispatch => {
-	return bindActionCreators({ getPostsRequest, getCategoriesRequest }, dispatch)
+	return bindActionCreators(
+		{ getPostsRequest, getCategoriesRequest, votePostRequest },
+		dispatch,
+	)
 }
 
 // const mapStateToProps = ({ posts }) => {
