@@ -26,6 +26,11 @@ class AllPosts extends Component {
 		}
 	}
 
+	onVote = direction => {
+		console.log(`${direction} voted!`)
+		// TODO: Fire off action to vote on the actual post
+	}
+
 	render() {
 		const { posts, categories, match } = this.props
 
@@ -54,7 +59,7 @@ class AllPosts extends Component {
 						onToggle={this.toggleSortMethod}
 					/>
 				</PostsViewControls>
-				<PostsList posts={sortedPosts} />
+				<PostsList posts={sortedPosts} onVote={this.onVote} />
 			</Flex>
 		)
 	}

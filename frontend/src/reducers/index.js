@@ -83,6 +83,14 @@ const currentPost = (state = initialPostState, action) => {
 	switch (action.type) {
 		case GET_POST:
 			return action.post
+		case VOTE_POST:
+			const { votedPost } = action
+			return {
+				// First, clone all properties of the existing post
+				...state,
+				// Then, modify the voteScore of that post
+				voteScore: votedPost.voteScore,
+			}
 		default:
 			return state
 	}

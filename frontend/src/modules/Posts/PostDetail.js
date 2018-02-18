@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getPostRequest } from '../../actions'
+import { getPostRequest, votePostRequest } from '../../actions'
 import { Flex, Box } from 'rebass'
 import { BG_TOP } from '../../utils/colors'
 import PostContents from './components/PostContents'
@@ -25,6 +25,11 @@ class PostDetail extends Component {
 		}
 	}
 
+	onVote = direction => {
+		console.log(`${direction} voted!`)
+		// TODO: Fire off action to vote on the actual post
+	}
+
 	// TODO: Loading state
 
 	render() {
@@ -42,6 +47,7 @@ class PostDetail extends Component {
 						voteScore={currentPost.voteScore}
 						commentCount={currentPost.commentCount}
 						currentPost={currentPost}
+						onVote={this.onVote}
 					/>
 				</Box>
 			</Flex>
@@ -56,7 +62,7 @@ const mapStateToProps = ({ currentPost }) => {
 }
 
 const mapDispatchToProps = dispatch => {
-	return bindActionCreators({ getPostRequest }, dispatch)
+	return bindActionCreators({ getPostRequest, votePostRequest }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetail)
