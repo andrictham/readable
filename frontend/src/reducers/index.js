@@ -5,22 +5,29 @@ import {
 	GET_POST,
 	ADD_POST,
 	EDIT_POST,
+	DELETE_POST,
 	GET_CATEGORIES,
 } from '../actions'
+import omit from 'lodash/omit'
 
 const posts = (state = {}, action) => {
 	switch (action.type) {
 		case GET_POSTS:
+			// Destructure payload from action
 			const { posts } = action
+			// Reformat array to object
 			let postsObj = {}
 			posts.map(post => {
 				return (postsObj[post.id] = post)
 			})
 			return postsObj
 		case ADD_POST:
+			// Destructure payload from action
 			const { post } = action
 			return {
+				// Return all existing posts
 				...state,
+				// Insert a new post
 				[post.id]: post,
 			}
 		case EDIT_POST:
@@ -33,6 +40,10 @@ const posts = (state = {}, action) => {
 					body: editedPost.body,
 				},
 			}
+		case DELETE_POST:
+			const { deletedPost } = action
+			// Use Lodash’s `omit` method to return a new state object, sans our deletedPost.
+			return omit(state, deletedPost.id)
 		default:
 			return state
 	}

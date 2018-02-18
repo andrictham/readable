@@ -3,6 +3,7 @@ import {
 	getPost,
 	addPost,
 	editPost,
+	deletePost,
 	getCategories,
 } from '../utils/api'
 
@@ -11,6 +12,7 @@ export const GET_POSTS = 'GET_POSTS'
 export const GET_POST = 'GET_POST'
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const EDIT_POST = 'EDIT_POST'
+export const DELETE_POST = 'DELETE_POST'
 
 // ===	===	===	===	=== === === ===
 //			C A T E G O R I E S
@@ -103,6 +105,23 @@ export const editPostRequest = editedPost => dispatch => {
 const editPostSuccess = editedPost => ({
 	type: EDIT_POST,
 	editedPost,
+})
+
+// Delete a post
+
+export const deletePostRequest = deletedPostID => dispatch => {
+	return deletePost(deletedPostID)
+		.then(deletedPost => {
+			dispatch(deletePostSuccess(deletedPost))
+		})
+		.catch(error => {
+			throw error
+		})
+}
+
+const deletePostSuccess = deletedPost => ({
+	type: DELETE_POST,
+	deletedPost,
 })
 
 // ===	===	===	===	===	===

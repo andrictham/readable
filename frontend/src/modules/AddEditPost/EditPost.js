@@ -5,6 +5,7 @@ import {
 	getPostRequest,
 	getCategoriesRequest,
 	editPostRequest,
+	deletePostRequest,
 } from '../../actions'
 import { reduxForm } from 'redux-form'
 import { Flex, Box, Heading } from 'rebass'
@@ -48,8 +49,10 @@ class EditPost extends Component {
 
 	deletePost = () => {
 		console.log('Deleted post!')
-		this.props.history.push('/')
-		this.props.notify(`☠️  Post deleted!`)
+		this.props
+			.deletePostRequest(this.props.currentPost.id)
+			.then(this.props.history.push('/'))
+			.then(this.props.notify(`☠️  Post deleted!`))
 	}
 
 	render() {
@@ -105,7 +108,12 @@ const mapStateToProps = ({ currentPost, categories }) => {
 
 const mapDispatchToProps = dispatch => {
 	return bindActionCreators(
-		{ getPostRequest, getCategoriesRequest, editPostRequest },
+		{
+			getPostRequest,
+			getCategoriesRequest,
+			editPostRequest,
+			deletePostRequest,
+		},
 		dispatch,
 	)
 }
