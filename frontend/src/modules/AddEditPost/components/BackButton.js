@@ -17,6 +17,9 @@ const StyledButton = styled(Link)`
 		:hover {
 			transform: translateX(-3px);
 		}
+		:active {
+			transform: translateX(-12px);
+		}
 	}
 `
 export default BackButton

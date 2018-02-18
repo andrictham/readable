@@ -67,6 +67,18 @@ const ArrowButton = styled.button`
 					transform: translateY(1px);
 				`};
 		}
+		&:active {
+			${props =>
+				props.direction === 'up' &&
+				css`
+					transform: translateY(-9px);
+				`};
+			${props =>
+				props.direction === 'down' &&
+				css`
+					transform: translateY(9px);
+				`};
+		}
 	}
 `
 
