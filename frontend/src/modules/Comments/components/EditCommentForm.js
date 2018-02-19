@@ -23,7 +23,7 @@ const EditPostForm = ({
 			name="commentBody"
 			label="Comment"
 			placeholder="Say something nice or wicked"
-			rows={3}
+			rows={isEditing ? 6 : 3}
 			disabled={isLoading}
 		/>
 		<Field

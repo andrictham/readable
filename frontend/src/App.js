@@ -5,6 +5,7 @@ import AllPosts from './modules/Posts/AllPosts'
 import AddPost from './modules/AddEditPost/AddPost'
 import EditPost from './modules/AddEditPost/EditPost'
 import PostDetail from './modules/Posts/PostDetail'
+import EditComment from './modules/Comments/EditComment'
 import { ToastContainer, toast } from 'react-toastify'
 import styled, { injectGlobal } from 'styled-components'
 import { BG_BOTTOM, MAIN } from './utils/colors'
@@ -34,6 +35,11 @@ const App = props => {
 					exact
 					path="/post/:id"
 					render={props => <PostDetail notify={notify} {...props} />}
+				/>
+				<Route
+					exact
+					path="/post/:id/comment/:commentID"
+					render={props => <EditComment notify={notify} {...props} />}
 				/>
 				<Route exact path="/:category?" component={AllPosts} />
 			</Switch>

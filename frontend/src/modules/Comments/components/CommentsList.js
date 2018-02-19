@@ -7,14 +7,15 @@ const CommentsList = ({ comments, onVote }) =>
 	comments.map(comment => {
 		return (
 			<CommentCardContainer
-				key={comment.id}
 				py={2}
 				px={3}
 				my={[1, 2]}
 				width={RESPONSIVE_SECTION}
+				key={comment.id}
 			>
 				<CommentContents
 					id={comment.id}
+					parentID={comment.parentId}
 					body={comment.body}
 					author={comment.author}
 					timestamp={comment.timestamp}

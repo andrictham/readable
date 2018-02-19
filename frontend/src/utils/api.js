@@ -128,9 +128,9 @@ export const voteComment = (id, vote) => {
 
 // PUT /comments/:id
 // Edit the details of an existing comment.
-export const editComment = (id, timestamp, body) => {
+export const editComment = ({id, timestamp, body}) => {
 	return api
-		.post(`/comments/${id}`, {
+		.put(`/comments/${id}`, {
 			timestamp,
 			body,
 		})

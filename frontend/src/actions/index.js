@@ -1,24 +1,30 @@
 import {
+	getCategories,
 	getPosts,
 	getPost,
 	addPost,
 	editPost,
 	votePost,
 	deletePost,
-	getCategories,
 	getPostComments,
 	addComment,
+	getComment,
+	editComment,
+	deleteComment,
 } from '../utils/api'
 
+export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const GET_POSTS = 'GET_POSTS'
 export const GET_POST = 'GET_POST'
 export const ADD_POST = 'ADD_POST'
 export const EDIT_POST = 'EDIT_POST'
 export const VOTE_POST = 'VOTE_POST'
 export const DELETE_POST = 'DELETE_POST'
-export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const GET_POST_COMMENTS = 'GET_POST_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
+export const GET_COMMENT = 'GET_COMMENT'
+export const EDIT_COMMENT = 'EDIT_COMMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
 
 // ===	===	===	===	=== === === ===
 //			C A T E G O R I E S
@@ -183,4 +189,55 @@ export const addCommentRequest = comment => dispatch => {
 const addCommentSuccess = addedComment => ({
 	type: ADD_COMMENT,
 	addedComment,
+})
+
+// Get a single comment
+
+export const getCommentRequest = id => dispatch => {
+	return getComment(id)
+		.then(comment => {
+			dispatch(getCommentSuccess(comment))
+		})
+		.catch(error => {
+			throw error
+		})
+}
+
+const getCommentSuccess = comment => ({
+	type: GET_COMMENT,
+	comment,
+})
+
+// Edit a single comment
+
+export const editCommentRequest = editedComment => dispatch => {
+	return editComment(editedComment)
+		.then(editedComment => {
+			dispatch(editCommentSuccess(editedComment))
+		})
+		.catch(error => {
+			throw error
+		})
+}
+
+const editCommentSuccess = editedComment => ({
+	type: EDIT_COMMENT,
+	editedComment,
+})
+
+// Delete a single comment
+
+export const deleteCommentRequest = deletedCommentID => dispatch => {
+	return deleteComment(deletedCommentID)
+		.then(deletedComment => {
+			dispatch(deleteCommentSuccess(deletedComment))
+		})
+		.catch(error => {
+			throw error
+		})
+}
+
+const deleteCommentSuccess = deletedComment => ({
+	type: DELETE_COMMENT,
+	deletedComment,
 })

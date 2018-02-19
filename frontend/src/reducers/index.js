@@ -1,17 +1,34 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import {
+	GET_CATEGORIES,
 	GET_POSTS,
 	GET_POST,
 	ADD_POST,
 	EDIT_POST,
 	VOTE_POST,
 	DELETE_POST,
-	GET_CATEGORIES,
 	GET_POST_COMMENTS,
 	ADD_COMMENT,
+	GET_COMMENT,
+	EDIT_COMMENT,
+	DELETE_COMMENT,
 } from '../actions'
 import omit from 'lodash/omit'
+
+const categories = (state = {}, action) => {
+	switch (action.type) {
+		case GET_CATEGORIES:
+			const { categories } = action
+			let categoriesObj = {}
+			categories.map(category => {
+				return (categoriesObj[category.name] = category)
+			})
+			return categoriesObj
+		default:
+			return state
+	}
+}
 
 const posts = (state = {}, action) => {
 	switch (action.type) {
@@ -98,20 +115,6 @@ const currentPost = (state = initialPostState, action) => {
 	}
 }
 
-const categories = (state = {}, action) => {
-	switch (action.type) {
-		case GET_CATEGORIES:
-			const { categories } = action
-			let categoriesObj = {}
-			categories.map(category => {
-				return (categoriesObj[category.name] = category)
-			})
-			return categoriesObj
-		default:
-			return state
-	}
-}
-
 const comments = (state = {}, action) => {
 	switch (action.type) {
 		case GET_POST_COMMENTS:
@@ -127,15 +130,62 @@ const comments = (state = {}, action) => {
 				...state,
 				[addedComment.id]: addedComment,
 			}
+		case EDIT_COMMENT:
+			const { editedComment } = action
+			return {
+				// First, clone all existing comment
+				...state,
+				// For the comment that matches our editedComment,
+				[editedComment.id]: {
+					// Clone all existing properties of that comment
+					...state[editedComment.id],
+					// Then, modify the body of that comment
+					body: editedComment.body,
+				},
+			}
+		case DELETE_COMMENT:
+			const { deletedComment } = action
+			// Use Lodash’s `omit` method to return a new state object, sans our deletedComment.
+			return omit(state, deletedComment.id)
+		default:
+			return state
+	}
+}
+
+const initialCommentState = {
+	id: '',
+	parentId: '',
+	timestamp: '',
+	body: '',
+	author: '',
+	voteScore: 0,
+	deleted: false,
+	parentDeleted: false,
+	commentCount: 0,
+}
+
+const currentComment = (state = initialCommentState, action) => {
+	switch (action.type) {
+		case GET_COMMENT:
+			return action.comment
+		// case VOTE_COMMENT:
+		// 	const { votedComment } = action
+		// 	return {
+		// 		// First, clone all properties of the existing post
+		// 		...state,
+		// 		// Then, modify the voteScore of that post
+		// 		voteScore: votedComment.voteScore,
+		// 	}
 		default:
 			return state
 	}
 }
 
 export default combineReducers({
+	categories,
 	posts,
 	currentPost,
-	categories,
 	comments,
+	currentComment,
 	form: formReducer,
 })

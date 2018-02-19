@@ -10,6 +10,7 @@ import VoteCounter from '../../../components/VoteCounter'
 
 const PostContents = ({
 	id,
+	parentID,
 	title,
 	body,
 	author,
@@ -31,7 +32,7 @@ const PostContents = ({
 				</Box>
 				<Box w={1 / 2}>
 					<Text right mb={1} mt={-1}>
-						<EditCommentButton to={`/edit-comment/${id}`}>
+						<EditCommentButton to={`/post/${parentID}/comment/${id}`}>
 							Edit
 						</EditCommentButton>
 					</Text>
