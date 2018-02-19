@@ -5,7 +5,7 @@ let db = {}
 
 const defaultData = {
 	'894tuq4ut84ut8v4t8wun89g': {
-		id: '084tuq4ut84ut8v3t8wun89g',
+		id: '894tuq4ut84ut8v4t8wun89g',
 		parentId: '8xf0y6ziyjabvozdd253nd',
 		timestamp: 1516166872634,
 		body: `Cool! I think people need to really realize that unlike many other tokens, BAT is actually already in use. Publishers are already receiving user contributions. They're seeing them in their accounts. They're being moved around and transferred. This is real utility. And this early. NOW. Adoption is also growing like crazy. Did you see the big YouTubers and sites this week, as well as the numbers Brendan just disclosed?!
@@ -43,7 +43,7 @@ const defaultData = {
 		parentDeleted: false,
 	},
 	'8tu4bsun805n8un48ve89': {
-		id: '4un80s5n8ve8978tt4bun',
+		id: '8tu4bsun805n8un48ve89',
 		parentId: '0ng4ok6yf7781p34ldez',
 		timestamp: 1469469767190,
 		body: `Epic trolling`,
