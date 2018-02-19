@@ -20,7 +20,7 @@ const EditPostForm = ({
 		<Field
 			component={FormField}
 			type="textarea"
-			name="postBody"
+			name="commentBody"
 			label="Comment"
 			placeholder="Say something nice or wicked"
 			rows={3}

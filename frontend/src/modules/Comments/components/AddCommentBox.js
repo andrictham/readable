@@ -15,7 +15,7 @@ class AddComment extends Component {
 			.addCommentRequest({
 				id: uniqid.process(),
 				timestamp: Date.now(),
-				body: formValues.postBody,
+				body: formValues.commentBody,
 				author: formValues.authorName,
 				parentId: this.props.parentId,
 			})
