@@ -5,10 +5,13 @@ import { Tooltip } from 'react-tippy'
 import 'react-tippy/dist/tippy.css'
 import FormField from '../../../components/FormField'
 import { SubmitButton, DeleteButton } from '../../../components/Buttons'
+import { REQUIRED } from '../../../utils/validations'
 
 const EditPostForm = ({
 	isEditing,
 	isLoading,
+	validate, // provided by Redux Form
+	invalid, // provided by Redux Form
 	pristine, // provided by Redux Form
 	submitting, // provided by Redux Form
 	handleSubmit, // a built-in method that Redux Form gives us for free.
@@ -25,6 +28,7 @@ const EditPostForm = ({
 			placeholder="Say something nice or wicked"
 			rows={isEditing ? 6 : 3}
 			disabled={isLoading}
+			validate={REQUIRED}
 		/>
 		<Field
 			component={FormField}
@@ -33,12 +37,13 @@ const EditPostForm = ({
 			label={isEditing ? 'Posted by' : 'Your Name'}
 			placeholder="John Appleseed"
 			disabled={isEditing}
+			validate={REQUIRED}
 		/>
 		<Flex>
 			<Box my={3} mr={2}>
 				<SubmitButton
 					type="submit"
-					disabled={pristine || submitting || isLoading}
+					disabled={pristine || invalid || submitting || isLoading}
 				>
 					{submitting
 						? 'Submitting...'

@@ -1,16 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Label, Input, Textarea } from 'rebass'
+import { Label, Input, Textarea, Message } from 'rebass'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import styled, { css } from 'styled-components'
-import { FADED } from '../utils/colors'
+import { FADED, DANGER } from '../utils/colors'
 
 const FormField = props => {
 	// This is a custom component which will be passed to Redux Form’s <Field /> component.
 	// It wraps around our presentational components such as <Label />, <Input />. and <Textarea /> from Rebass.
 	// We also handle a bunch of stuff here, such as hooking up the label and the input using htmlFor and id on the label and input respectively.
-	const { input, options, type, label, placeholder, rows, disabled } = props
+	const {
+		input,
+		options,
+		type,
+		label,
+		placeholder,
+		rows,
+		disabled,
+		meta: { touched, error, warning },
+	} = props
 
 	return (
 		<div>
@@ -53,6 +62,18 @@ const FormField = props => {
 					onBlur={() => input.onBlur(input.value)} // react-select clears our value onBlur, somehow. This tells it to keep the value passed in from Redux Form.
 				/>
 			)}
+
+			{touched &&
+				((error && (
+					<ValidationMessage bg={DANGER} mb={4}>
+						{error}
+					</ValidationMessage>
+				)) ||
+					(warning && (
+						<ValidationMessage bg={DANGER} mb={4}>
+							{warning}
+						</ValidationMessage>
+					)))}
 		</div>
 	)
 }
@@ -86,6 +107,12 @@ const StyledSelect = styled(Select)`
 				}
 			`};
 	}
+`
+
+const ValidationMessage = styled(Message)`
+	font-size: 0.8rem;
+	font-weight: normal;
+	border-radius: 2px;
 `
 
 FormField.defaultProps = {
