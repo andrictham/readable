@@ -7,7 +7,7 @@ import uniqid from 'uniqid'
 import { Flex, Box, Heading } from 'rebass'
 import { BG_TOP } from '../../utils/colors'
 import EditPostForm from './components/EditPostForm'
-import BackButton from './components/BackButton'
+import { BackButton } from '../../components/Buttons'
 
 class AddPost extends Component {
 	submitForm = formValues => {

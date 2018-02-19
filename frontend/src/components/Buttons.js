@@ -1,7 +1,29 @@
+import React from 'react'
 import { Button, ButtonOutline } from 'rebass'
 import styled from 'styled-components'
-import { TRANSITION_SNAPPY } from '../utils/transitions'
+import { TRANSITION_SNAPPY, TRANSITION_SMOOTH } from '../utils/transitions'
 import { MAIN, DANGER } from '../utils/colors'
+import { Link } from 'react-router-dom'
+import { MdArrowBack } from 'react-icons/lib/md'
+
+const StyledArrowButton = styled(Link)`
+	color: inherit;
+	& svg {
+		transition: ${TRANSITION_SMOOTH};
+		:hover {
+			transform: translateX(-3px);
+		}
+		:active {
+			transform: translateX(-12px);
+		}
+	}
+`
+
+export const BackButton = ({ to }) => (
+	<StyledArrowButton to={to}>
+		<MdArrowBack size={32} />
+	</StyledArrowButton>
+)
 
 export const SubmitButton = styled(Button)`
 	background-color: ${MAIN};
