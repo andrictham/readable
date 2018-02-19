@@ -5,6 +5,7 @@ import {
 	getPostRequest,
 	votePostRequest,
 	getPostCommentsRequest,
+	voteCommentRequest,
 } from '../../actions'
 import { Flex, Box } from 'rebass'
 import { BG_TOP } from '../../utils/colors'
@@ -42,12 +43,12 @@ class PostDetail extends Component {
 	}
 
 	onCommentVote = (id, direction) => {
-		// const { voteCommentRequest } = this.props
+		const { voteCommentRequest } = this.props
 		console.log(`${direction}voted on ${id}`)
-		// voteCommentRequest({
-		// 	id,
-		// 	vote: `${direction}Vote`,
-		// })
+		voteCommentRequest({
+			id,
+			vote: `${direction}Vote`,
+		})
 	}
 
 	sortByLatest = (a, b) => b.timestamp - a.timestamp
@@ -92,7 +93,7 @@ const mapStateToProps = ({ currentPost, comments }) => {
 
 const mapDispatchToProps = dispatch => {
 	return bindActionCreators(
-		{ getPostRequest, votePostRequest, getPostCommentsRequest },
+		{ getPostRequest, votePostRequest, getPostCommentsRequest, voteCommentRequest },
 		dispatch,
 	)
 }

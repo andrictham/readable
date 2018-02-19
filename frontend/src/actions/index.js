@@ -10,6 +10,7 @@ import {
 	addComment,
 	getComment,
 	editComment,
+	voteComment,
 	deleteComment,
 } from '../utils/api'
 
@@ -24,6 +25,7 @@ export const GET_POST_COMMENTS = 'GET_POST_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const GET_COMMENT = 'GET_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
+export const VOTE_COMMENT = 'VOTE_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 
 // ===	===	===	===	=== === === ===
@@ -223,6 +225,23 @@ export const editCommentRequest = editedComment => dispatch => {
 const editCommentSuccess = editedComment => ({
 	type: EDIT_COMMENT,
 	editedComment,
+})
+
+// Vote on a comment
+
+export const voteCommentRequest = ({ id, vote }) => dispatch => {
+	return voteComment(id, vote)
+		.then(votedComment => {
+			dispatch(voteCommentSuccess(votedComment))
+		})
+		.catch(error => {
+			throw error
+		})
+}
+
+const voteCommentSuccess = votedComment => ({
+	type: VOTE_COMMENT,
+	votedComment,
 })
 
 // Delete a single comment

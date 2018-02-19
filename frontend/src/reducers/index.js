@@ -12,6 +12,7 @@ import {
 	ADD_COMMENT,
 	GET_COMMENT,
 	EDIT_COMMENT,
+	VOTE_COMMENT,
 	DELETE_COMMENT,
 } from '../actions'
 import omit from 'lodash/omit'
@@ -143,6 +144,19 @@ const comments = (state = {}, action) => {
 					body: editedComment.body,
 				},
 			}
+		case VOTE_COMMENT:
+			const { votedComment } = action
+			return {
+				// First, clone all existing posts
+				...state,
+				// For the post that matches our votedComment,
+				[votedComment.id]: {
+					// Clone all existing properties of that post
+					...state[votedComment.id],
+					// Then, modify the voteScore of that post
+					voteScore: votedComment.voteScore,
+				},
+			}
 		case DELETE_COMMENT:
 			const { deletedComment } = action
 			// Use Lodash’s `omit` method to return a new state object, sans our deletedComment.
@@ -168,14 +182,6 @@ const currentComment = (state = initialCommentState, action) => {
 	switch (action.type) {
 		case GET_COMMENT:
 			return action.comment
-		// case VOTE_COMMENT:
-		// 	const { votedComment } = action
-		// 	return {
-		// 		// First, clone all properties of the existing post
-		// 		...state,
-		// 		// Then, modify the voteScore of that post
-		// 		voteScore: votedComment.voteScore,
-		// 	}
 		default:
 			return state
 	}
