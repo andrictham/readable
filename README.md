@@ -4,7 +4,7 @@ This is a React/Redux practice app implemented as the final assessment project f
 
 Readable is a content and comment web app (think: Reddit). Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.
 
-This repository includes the code for the frontend client and the backend API Server.
+This repository includes the code for the frontend client, and the backend API Server (provided by Udacity).
 
 ## Start Developing
 
