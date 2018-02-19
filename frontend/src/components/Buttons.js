@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, ButtonOutline } from 'rebass'
 import styled from 'styled-components'
 import { TRANSITION_SNAPPY, TRANSITION_SMOOTH } from '../utils/transitions'
-import { MAIN, DANGER } from '../utils/colors'
+import { MAIN, DANGER, BG_BOTTOM } from '../utils/colors'
 import { Link } from 'react-router-dom'
 import { MdArrowBack } from 'react-icons/lib/md'
 
@@ -31,6 +31,12 @@ export const SubmitButton = styled(Button)`
 	cursor: pointer;
 	padding: 0.8rem 1.4rem;
 	transition: ${TRANSITION_SNAPPY};
+	&:active {
+		background-color: ${MAIN};
+	}
+	&:focus {
+		box-shadow: 0 0 0 2px ${BG_BOTTOM};
+	}
 `
 
 export const DeleteButton = styled(ButtonOutline)`
