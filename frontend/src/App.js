@@ -49,6 +49,7 @@ const App = props => {
 
 const fontFamily =
 	"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'"
+// System font stack, courtesy of CSS-Tricks: https://css-tricks.com/snippets/css/system-font-stack/
 
 const Main = styled.div`
 	padding-bottom: 2rem;
