@@ -21,6 +21,7 @@ const EditPostForm = ({
 			component={FormField}
 			type="textarea"
 			name="postBody"
+			label="Comment"
 			placeholder="Say something nice or wicked"
 			rows={3}
 			disabled={isLoading}

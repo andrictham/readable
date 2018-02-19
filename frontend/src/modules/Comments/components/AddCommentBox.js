@@ -26,7 +26,7 @@ class AddComment extends Component {
 	render() {
 		return (
 			<AddCommentCard py={2} px={3} my={[1, 2]} width={RESPONSIVE_SECTION}>
-				<Lead mt={3} mb={3}>
+				<Lead mt={3} mb={4}>
 					Add a Comment
 				</Lead>
 				<EditCommentForm
