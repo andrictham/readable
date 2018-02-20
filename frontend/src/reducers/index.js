@@ -111,6 +111,11 @@ const currentPost = (state = initialPostState, action) => {
 				// Then, modify the voteScore of that post
 				voteScore: votedPost.voteScore,
 			}
+		case ADD_COMMENT:
+			return {
+				...state,
+				commentCount: state['commentCount'] + 1,
+			}
 		default:
 			return state
 	}
