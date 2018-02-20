@@ -17,6 +17,7 @@ const PostCard = props => (
 
 const PostCardContainer = Card.extend`
 	box-shadow: none;
+	min-width: 300px;
 	transition: ${TRANSITION_SMOOTH};
 	&:hover {
 		box-shadow: ${SHADOW};
