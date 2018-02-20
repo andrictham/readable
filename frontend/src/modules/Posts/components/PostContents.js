@@ -6,8 +6,7 @@ import { Tooltip } from 'react-tippy'
 import { Flex, Box, Badge, Subhead, Text } from 'rebass'
 import styled from 'styled-components'
 import Pluralize from 'react-pluralize'
-import { MAIN, DANGER, BG_TOP, BG_BOTTOM, FADED } from '../../../utils/colors'
-import { TRANSITION_SNAPPY } from '../../../utils/transitions'
+import { MAIN } from '../../../utils/colors'
 import { RESPONSIVE_SECTION } from '../../../utils/sizing'
 import { EditPostButton, DeletePostButton } from '../../../components/Buttons'
 import VoteCounter from '../../../components/VoteCounter'
@@ -37,7 +36,7 @@ const PostContents = ({
 					</p>
 				</Box>
 				<Box w={1 / 2}>
-					<Text right mb={1} mt={1}>
+					<Text is="div" right mb={1} mt={1}>
 						<EditPostButton
 							onClick={e => {
 								e.preventDefault()

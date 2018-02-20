@@ -3,8 +3,6 @@ import moment from 'moment'
 import Truncate from 'react-truncate'
 import { Flex, Box, Text } from 'rebass'
 import styled from 'styled-components'
-import { MAIN, BG_TOP, BG_BOTTOM } from '../../../utils/colors'
-import { TRANSITION_SNAPPY } from '../../../utils/transitions'
 import VoteCounter from '../../../components/VoteCounter'
 import { EditCommentButton } from '../../../components/Buttons'
 
