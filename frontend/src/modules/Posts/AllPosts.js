@@ -6,6 +6,7 @@ import {
 	getPostsRequest,
 	getCategoriesRequest,
 	votePostRequest,
+	deletePostRequest,
 } from '../../actions'
 import PostCategoryFilter from './components/PostCategoryFilter'
 import PostSortToggle from './components/PostSortToggle'
@@ -39,6 +40,13 @@ class AllPosts extends Component {
 		})
 	}
 
+	onDelete = id => {
+		console.log('Deleted post!')
+		this.props
+			.deletePostRequest(id)
+			.then(this.props.notify(`☠️  Post deleted!`))
+	}
+
 	render() {
 		const { posts, categories, match } = this.props
 
@@ -67,7 +75,11 @@ class AllPosts extends Component {
 						onToggle={this.toggleSortMethod}
 					/>
 				</PostsViewControls>
-				<PostsList posts={sortedPosts} onVote={this.onVote} />
+				<PostsList
+					posts={sortedPosts}
+					onVote={this.onVote}
+					onDelete={this.onDelete}
+				/>
 			</Flex>
 		)
 	}
@@ -80,7 +92,12 @@ const PostsViewControls = styled.div`
 
 const mapDispatchToProps = dispatch => {
 	return bindActionCreators(
-		{ getPostsRequest, getCategoriesRequest, votePostRequest },
+		{
+			getPostsRequest,
+			getCategoriesRequest,
+			votePostRequest,
+			deletePostRequest,
+		},
 		dispatch,
 	)
 }

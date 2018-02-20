@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Box } from 'rebass'
 import PostCard from './PostCard'
 
-const PostsList = ({ posts, onVote }) => (
+const PostsList = ({ posts, onVote, onDelete }) => (
 	<Box>
 		<Posts>
 			{posts.map(post => (
@@ -18,6 +18,7 @@ const PostsList = ({ posts, onVote }) => (
 					voteScore={post.voteScore}
 					commentCount={post.commentCount}
 					onVote={onVote}
+					onDelete={onDelete}
 					truncate
 				/>
 			))}

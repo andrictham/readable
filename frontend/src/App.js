@@ -42,7 +42,11 @@ const App = props => {
 					path="/post/:id/comment/:commentID"
 					render={props => <EditComment notify={notify} {...props} />}
 				/>
-				<Route exact path="/:category?" component={AllPosts} />
+				<Route
+					exact
+					path="/:category?"
+					render={props => <AllPosts notify={notify} {...props} />}
+				/>
 				<Route component={FourOhFour} />
 			</Switch>
 		</Main>

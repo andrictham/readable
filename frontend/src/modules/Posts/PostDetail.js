@@ -6,6 +6,7 @@ import {
 	votePostRequest,
 	getPostCommentsRequest,
 	voteCommentRequest,
+	deletePostRequest,
 } from '../../actions'
 import { Flex, Box } from 'rebass'
 import { BG_TOP } from '../../utils/colors'
@@ -60,6 +61,14 @@ class PostDetail extends Component {
 		})
 	}
 
+	onDelete = id => {
+		console.log('Deleted post!')
+		this.props
+			.deletePostRequest(id)
+			.then(this.props.history.push('/'))
+			.then(this.props.notify(`☠️  Post deleted!`))
+	}
+
 	sortByLatest = (a, b) => b.timestamp - a.timestamp
 
 	// TODO: Loading state
@@ -82,6 +91,7 @@ class PostDetail extends Component {
 						commentCount={currentPost.commentCount}
 						currentPost={currentPost}
 						onVote={this.onPostVote}
+						onDelete={this.onDelete}
 					/>
 				</Box>
 				<AddCommentBox parentId={currentPost.id} notify={notify} />
@@ -111,6 +121,7 @@ const mapDispatchToProps = dispatch => {
 			votePostRequest,
 			getPostCommentsRequest,
 			voteCommentRequest,
+			deletePostRequest,
 		},
 		dispatch,
 	)
