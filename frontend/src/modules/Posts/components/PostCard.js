@@ -9,7 +9,7 @@ import PostContents from './PostContents'
 
 const PostCard = props => (
 	<PostCardContainer py={2} px={3} m={3} width={RESPONSIVE_SECTION}>
-		<StyledLink to={`/post/${props.id}`}>
+		<StyledLink to={`/${props.category}/${props.id}`}>
 			<PostContents {...props} />
 		</StyledLink>
 	</PostCardContainer>

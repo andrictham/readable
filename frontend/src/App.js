@@ -33,7 +33,7 @@ const App = props => {
 				/>
 				<Route
 					exact
-					path="/post/:id"
+					path="/:category/:postID"
 					render={props => <PostDetail notify={notify} {...props} />}
 				/>
 				<Route

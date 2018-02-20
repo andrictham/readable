@@ -20,8 +20,8 @@ class PostDetail extends Component {
 
 	componentDidMount() {
 		const { getPostRequest, getPostCommentsRequest, match } = this.props
-		getPostRequest(match.params.id)
-		getPostCommentsRequest(match.params.id)
+		getPostRequest(match.params.postID)
+		getPostCommentsRequest(match.params.postID)
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -93,7 +93,12 @@ const mapStateToProps = ({ currentPost, comments }) => {
 
 const mapDispatchToProps = dispatch => {
 	return bindActionCreators(
-		{ getPostRequest, votePostRequest, getPostCommentsRequest, voteCommentRequest },
+		{
+			getPostRequest,
+			votePostRequest,
+			getPostCommentsRequest,
+			voteCommentRequest,
+		},
 		dispatch,
 	)
 }
