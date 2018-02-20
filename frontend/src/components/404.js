@@ -5,11 +5,13 @@ import styled from 'styled-components'
 import { BG_TOP } from '../utils/colors'
 import { SubmitButton as Button } from './Buttons'
 
-const FourOhFour = ({}) => (
+const FourOhFour = () => (
 	<Flex direction="column" align="center">
 		<Box p={3} mb={[1, 3]} bg={BG_TOP} w={1}>
 			<Emoji mt={3} mb={1}>
-				😟
+				<span role="img" alt="Sad face" aria-label="Sad face">
+					😟
+				</span>
 			</Emoji>
 			<Heading my={3}>This is not our fate</Heading>
 			<Paragraph>
