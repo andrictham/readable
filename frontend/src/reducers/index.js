@@ -14,6 +14,8 @@ import {
 	EDIT_COMMENT,
 	VOTE_COMMENT,
 	DELETE_COMMENT,
+	LOADING,
+	LOADED,
 } from '../actions'
 import omit from 'lodash/omit'
 
@@ -192,11 +194,27 @@ const currentComment = (state = initialCommentState, action) => {
 	}
 }
 
+const loading = (state = { loading: false }, action) => {
+	switch (action.type) {
+		case LOADING:
+			return {
+				loading: true,
+			}
+		case LOADED:
+			return {
+				loading: false,
+			}
+		default:
+			return state
+	}
+}
+
 export default combineReducers({
 	categories,
 	posts,
 	currentPost,
 	comments,
 	currentComment,
+	loading,
 	form: formReducer,
 })

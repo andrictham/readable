@@ -28,11 +28,12 @@ class PostDetail extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		// If component is rerendering because it’s receiving new props from Redux, we want to set loading to false
-		if (nextProps.currentPost.id) {
+		if (!nextProps.loading.loading) {
 			this.setState(() => ({
 				isLoading: false,
+				isDeleted: false,
 			}))
-		} else if (!nextProps.currentPost.id) {
+		} else if (!nextProps.loading.loading && !nextProps.currentPost.id) {
 			console.log('Post is deleted')
 			this.setState(() => ({
 				isLoading: false,
@@ -92,13 +93,14 @@ class PostDetail extends Component {
 	}
 }
 
-const mapStateToProps = ({ currentPost, comments }) => {
+const mapStateToProps = ({ currentPost, comments, loading }) => {
 	const commentsArray = Object.keys(comments).map(key => {
 		return comments[key]
 	})
 	return {
 		currentPost,
 		comments: commentsArray,
+		loading,
 	}
 }
 

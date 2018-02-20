@@ -27,6 +27,8 @@ export const GET_COMMENT = 'GET_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const VOTE_COMMENT = 'VOTE_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const LOADING = 'LOADING'
+export const LOADED = 'LOADED'
 
 // ===	===	===	===	=== === === ===
 //			C A T E G O R I E S
@@ -73,9 +75,15 @@ const getPostsSuccess = posts => ({
 // Get a single post
 
 export const getPostRequest = id => dispatch => {
+	dispatch({
+		type: LOADING,
+	})
 	return getPost(id)
 		.then(post => {
 			dispatch(getPostSuccess(post))
+			dispatch({
+				type: LOADED,
+			})
 		})
 		.catch(error => {
 			throw error

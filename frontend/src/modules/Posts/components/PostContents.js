@@ -29,7 +29,7 @@ const PostContents = ({
 				<Box w={1 / 2}>
 					<p>
 						<strong>{author}</strong> &nbsp;
-						<span>{moment(timestamp).fromNow()}</span>
+						<span>{timestamp && moment(timestamp).fromNow()}</span>
 					</p>
 				</Box>
 				<Box w={1 / 2}>
