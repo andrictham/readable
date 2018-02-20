@@ -12,10 +12,12 @@ import { BG_TOP } from '../../utils/colors'
 import PostContents from './components/PostContents'
 import CommentsList from '../Comments/components/CommentsList'
 import AddCommentBox from '../Comments/components/AddCommentBox'
+import FourOhFour from '../../components/404'
 
 class PostDetail extends Component {
 	state = {
 		isLoading: true,
+		isDeleted: false,
 	}
 
 	componentDidMount() {
@@ -29,6 +31,12 @@ class PostDetail extends Component {
 		if (nextProps.currentPost.id) {
 			this.setState(() => ({
 				isLoading: false,
+			}))
+		} else if (!nextProps.currentPost.id) {
+			console.log('Post is deleted')
+			this.setState(() => ({
+				isLoading: false,
+				isDeleted: true,
 			}))
 		}
 	}
@@ -57,8 +65,9 @@ class PostDetail extends Component {
 
 	render() {
 		const { currentPost, comments, notify } = this.props
+		const { isDeleted } = this.state
 		const sortedComments = [].concat(comments.sort(this.sortByLatest))
-		return (
+		return !isDeleted ? (
 			<Flex direction="column" align="center">
 				<Box p={3} mb={[1, 3]} bg={BG_TOP} w={1}>
 					<PostContents
@@ -77,6 +86,8 @@ class PostDetail extends Component {
 				<AddCommentBox parentId={currentPost.id} notify={notify} />
 				<CommentsList comments={sortedComments} onVote={this.onCommentVote} />
 			</Flex>
+		) : (
+			<FourOhFour />
 		)
 	}
 }
