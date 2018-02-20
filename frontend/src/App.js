@@ -6,6 +6,7 @@ import AddPost from './modules/AddEditPost/AddPost'
 import EditPost from './modules/AddEditPost/EditPost'
 import PostDetail from './modules/Posts/PostDetail'
 import EditComment from './modules/Comments/EditComment'
+import FourOhFour from './components/404'
 import { ToastContainer, toast } from 'react-toastify'
 import styled, { injectGlobal } from 'styled-components'
 import { BG_BOTTOM, MAIN } from './utils/colors'
@@ -42,6 +43,7 @@ const App = props => {
 					render={props => <EditComment notify={notify} {...props} />}
 				/>
 				<Route exact path="/:category?" component={AllPosts} />
+				<Route component={FourOhFour} />
 			</Switch>
 		</Main>
 	)
