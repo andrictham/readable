@@ -31,14 +31,14 @@ class PostDetail extends Component {
 		if (!nextProps.loading.loading) {
 			this.setState(() => ({
 				isLoading: false,
-				isDeleted: false,
 			}))
-		} else if (!nextProps.loading.loading && !nextProps.currentPost.id) {
-			console.log('Post is deleted')
-			this.setState(() => ({
-				isLoading: false,
-				isDeleted: true,
-			}))
+			if (!nextProps.currentPost.id) {
+				console.log('Post is deleted')
+				this.setState(() => ({
+					isLoading: false,
+					isDeleted: true,
+				}))
+			}
 		}
 	}
 
