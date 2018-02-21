@@ -29,7 +29,7 @@ class PostDetail extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		// If component is rerendering because it’s receiving new props from Redux, we want to set loading to false
-		if (!nextProps.loading.loading) {
+		if (nextProps.currentPost.hasLoaded) {
 			this.setState(() => ({
 				isLoading: false,
 			}))
@@ -75,7 +75,7 @@ class PostDetail extends Component {
 
 	render() {
 		const { currentPost, comments, notify } = this.props
-		const { isDeleted } = this.state
+		const { isDeleted, isLoading } = this.state
 		const sortedComments = [].concat(comments.sort(this.sortByLatest))
 		return !isDeleted ? (
 			<Flex direction="column" align="center">
@@ -92,6 +92,7 @@ class PostDetail extends Component {
 						currentPost={currentPost}
 						onVote={this.onPostVote}
 						onDelete={this.onDelete}
+						isLoading={isLoading}
 					/>
 				</Box>
 				<AddCommentBox parentId={currentPost.id} notify={notify} />
@@ -103,14 +104,13 @@ class PostDetail extends Component {
 	}
 }
 
-const mapStateToProps = ({ currentPost, comments, loading }) => {
+const mapStateToProps = ({ currentPost, comments }) => {
 	const commentsArray = Object.keys(comments).map(key => {
 		return comments[key]
 	})
 	return {
 		currentPost,
 		comments: commentsArray,
-		loading,
 	}
 }
 

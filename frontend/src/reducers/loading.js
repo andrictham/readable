@@ -4,11 +4,11 @@ const loading = (state = { loading: false }, action) => {
 	switch (action.type) {
 		case LOADING:
 			return {
-				loading: true,
+				hasLoaded: false,
 			}
 		case LOADED:
 			return {
-				loading: false,
+				hasLoaded: true,
 			}
 		default:
 			return state

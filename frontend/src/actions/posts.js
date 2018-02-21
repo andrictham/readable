@@ -34,13 +34,13 @@ const getPostsSuccess = posts => ({
 
 export const getPostRequest = id => dispatch => {
 	dispatch({
-		type: types.LOADING,
+		type: types.POST_LOADING,
 	})
 	return getPost(id)
 		.then(post => {
 			dispatch(getPostSuccess(post))
 			dispatch({
-				type: types.LOADED,
+				type: types.POST_LOADED,
 			})
 		})
 		.catch(error => {

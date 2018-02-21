@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import moment from 'moment'
 import Truncate from 'react-truncate'
 import { Tooltip } from 'react-tippy'
+import Skeleton from 'react-loading-skeleton'
 import { Flex, Box, Badge, Subhead, Text } from 'rebass'
 import styled from 'styled-components'
 import Pluralize from 'react-pluralize'
@@ -25,14 +26,17 @@ const PostContents = ({
 	onDelete,
 	truncate,
 	history,
+	isLoading,
 }) => {
 	return (
 		<Box m="auto" width={currentPost && RESPONSIVE_SECTION}>
 			<Flex align="center" pb={2}>
 				<Box w={1 / 2}>
 					<p>
-						<strong>{author}</strong> &nbsp;
-						<span>{timestamp && moment(timestamp).fromNow()}</span>
+						<strong>{isLoading ? <Skeleton /> : author}</strong> &nbsp;
+						<span>
+							{!isLoading && timestamp && moment(timestamp).fromNow()}
+						</span>
 					</p>
 				</Box>
 				<Box w={1 / 2}>
@@ -70,10 +74,12 @@ const PostContents = ({
 				</Box>
 			</Flex>
 			<Subhead>
-				{title}
-				<Badge bg={MAIN} ml={2} px={2}>
-					{category}
-				</Badge>
+				{isLoading ? <Skeleton /> : title}
+				{!isLoading && (
+					<Badge bg={MAIN} ml={2} px={2}>
+						{category}
+					</Badge>
+				)}
 			</Subhead>
 
 			<PostContentsBody>
@@ -81,6 +87,8 @@ const PostContents = ({
 					<Truncate lines={2} ellipsis="...">
 						{body}
 					</Truncate>
+				) : isLoading ? (
+					<Skeleton count={2} />
 				) : (
 					body
 				)}
@@ -88,14 +96,18 @@ const PostContents = ({
 
 			<Flex align="center">
 				<Box w={1 / 2}>
-					<VoteCounter voteScore={voteScore} handleVote={onVote} id={id} />
+					<VoteCounter
+						voteScore={isLoading ? 0 : voteScore}
+						handleVote={onVote}
+						id={id}
+					/>
 				</Box>
 				<Box w={1 / 2}>
 					<Text right>
 						<Pluralize
 							singular="comment"
 							plural="comments"
-							count={commentCount}
+							count={isLoading ? 0 : commentCount}
 						/>
 					</Text>
 				</Box>

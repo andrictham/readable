@@ -5,6 +5,8 @@ import {
 	EDIT_POST,
 	VOTE_POST,
 	DELETE_POST,
+	POST_LOADING,
+	POST_LOADED,
 	ADD_COMMENT,
 } from '../actions/types'
 
@@ -76,6 +78,7 @@ const initialPostState = {
 	voteScore: 0,
 	deleted: false,
 	commentCount: 0,
+	hasLoaded: false,
 }
 
 export const currentPost = (state = initialPostState, action) => {
@@ -94,6 +97,16 @@ export const currentPost = (state = initialPostState, action) => {
 			return {
 				...state,
 				commentCount: state['commentCount'] + 1,
+			}
+		case POST_LOADING:
+			return {
+				...state,
+				hasLoaded: false,
+			}
+		case POST_LOADED:
+			return {
+				...state,
+				hasLoaded: true,
 			}
 		default:
 			return state
